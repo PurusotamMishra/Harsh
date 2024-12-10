@@ -117,11 +117,51 @@
                             <option value="Linux">Linux</option>
                         </select>
                     </th>
-                    <th>CVE</th>
-                    <th>MITRE Defend</th>
-                    <th>Mitigation</th>
-                    <th>NIST</th>
-                    <th>CIST</th>
+                    <th>
+                        CVE
+                        <br>
+                        <select id="filterCVE" onchange="filterTable()">
+                            <option value="">All</option>
+                            <option value="CVE-2023-12345">CVE-2023-12345</option>
+                            <option value="CVE-2023-67890">CVE-2023-67890</option>
+                        </select>
+                    </th>
+                    <th>
+                        MITRE Defend
+                        <br>
+                        <select id="filterMITREDefened" onchange="filterTable()">
+                            <option value="">All</option>
+                            <option value="Monitor Email Traffic">Monitor Email Traffic</option>
+                            <option value="Command Line Auditing">Command Line Auditing</option>
+                        </select>
+                    </th>
+                    <th>
+                        Mitigation
+                        <br>
+                        <select id="filterMitigation" onchange="filterTable()">
+                            <option value="">All</option>
+                            <option value="Employee Training">Employee Training	</option>
+                            <option value="Application Whitelisting">Application Whitelisting</option>
+                        </select>
+                    </th>
+                    <th>
+                        NIST
+                        <br>
+                        <select id="filterNIST" onchange="filterTable()">
+                            <option value="">All</option>
+                            <option value="SP 800-53">SP 800-53</option>
+                            <option value="SP 800-171">SP 800-171</option>
+                        </select>
+                    </th>
+                    <th>
+                        CIST
+                        <br>
+                        <select id="filterCIST" onchange="filterTable()">
+                            <option value="">All</option>
+                            <option value="4.1.1">4.1.1</option>
+                            <option value="4.2.2">4.2.2</option>
+                        </select>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -158,6 +198,11 @@
             const filterTactic = document.getElementById('filterTactic').value.toLowerCase();
             const filterTechnique = document.getElementById('filterTechnique').value.toLowerCase();
             const filterPlatform = document.getElementById('filterPlatform').value.toLowerCase();
+            const filterCVE = document.getElementById('filterCVE').value.toLowerCase();
+            const filterMITREDefened = document.getElementById('filterMITREDefened').value.toLowerCase();
+            const filterMitigation = document.getElementById('filterMitigation').value.toLowerCase();
+            const filterNIST = document.getElementById('filterNIST').value.toLowerCase();
+            const filterCIST = document.getElementById('filterCIST').value.toLowerCase();
             const table = document.getElementById('detectionTable');
             const rows = table.getElementsByTagName('tr');
 
@@ -167,13 +212,26 @@
                 const tactic = cells[1]?.innerText.toLowerCase();
                 const technique = cells[2]?.innerText.toLowerCase();
                 const platform = cells[3]?.innerText.toLowerCase();
+                const cve = cells[4]?.innerText.toLowerCase();
+                const mitredefend = cells[5]?.innerText.toLowerCase();
+                const mitigation = cells[6]?.innerText.toLowerCase();
+                const nist = cells[7]?.innerText.toLowerCase();
+                const cist = cells[8]?.innerText.toLowerCase();
                 const matchesKeyword = !keyword || rows[i].innerText.toLowerCase().includes(keyword);
                 const matchesDetectionName = !filterDetectionName || detectionName.includes(filterDetectionName);
                 const matchesTactic = !filterTactic || tactic.includes(filterTactic);
                 const matchesTechnique = !filterTechnique || technique.includes(filterTechnique);
                 const matchesPlatform = !filterPlatform || platform.includes(filterPlatform);
+                const matchesCVE = !filterCVE || cve.includes(filterCVE);
+                const matchesMITREDefend = !filterMITREDefened || mitredefend.includes(filterMITREDefened);
+                const matchesMitigation = !filterMitigation || mitigation.includes(filterMitigation);
+                const matchesNIST = !filterNIST || nist.includes(filterNIST);
+                const matchesCIST = !filterCIST || cist.includes(filterCIST);
 
-                rows[i].style.display = matchesKeyword && matchesDetectionName && matchesTactic && matchesTechnique && matchesPlatform ? '' : 'none';
+
+                rows[i].style.display = matchesKeyword && matchesDetectionName && matchesTactic && matchesTechnique && matchesPlatform && matchesCVE  && matchesMITREDefend && 
+                matchesMitigation && matchesNIST && matchesCIST 
+                ? '' : 'none';
             }
         }
     </script>
