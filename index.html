@@ -43,7 +43,7 @@
             border-collapse: collapse;
         }
         thead {
-            background-color: #4CAF50;
+            background-color: #003366;
             color: white;
         }
         th, td {
@@ -53,15 +53,6 @@
         }
         th {
             font-weight: bold;
-            position: relative;
-        }
-        th .filter-container {
-            display: flex;
-            align-items: center;
-        }
-        th .filter-icon {
-            margin-left: 5px;
-            cursor: pointer;
         }
         tr:nth-child(even) {
             background-color: #f2f2f2;
@@ -91,10 +82,8 @@
             <thead>
                 <tr>
                     <th>
-                        <div class="filter-container">
-                            Detection Name
-                            <span class="filter-icon">🔽</span>
-                        </div>
+                        Detection Name
+                        <br>
                         <select id="filterDetectionName" onchange="filterTable()">
                             <option value="">All</option>
                             <option value="Example Detection">Example Detection</option>
@@ -102,18 +91,32 @@
                         </select>
                     </th>
                     <th>
-                        <div class="filter-container">
-                            MITRE Tactic
-                            <span class="filter-icon">🔽</span>
-                        </div>
+                        MITRE Tactic
+                        <br>
                         <select id="filterTactic" onchange="filterTable()">
                             <option value="">All</option>
                             <option value="Initial Access">Initial Access</option>
                             <option value="Execution">Execution</option>
                         </select>
                     </th>
-                    <th>MITRE Technique/ Sub-technique</th>
-                    <th>Platform</th>
+                    <th>
+                        MITRE Technique/ Sub-technique
+                        <br>
+                        <select id="filterTechnique" onchange="filterTable()">
+                            <option value="">All</option>
+                            <option value="Phishing (T1566)">Phishing (T1566)</option>
+                            <option value="PowerShell (T1059.001)">PowerShell (T1059.001)</option>
+                        </select>
+                    </th>
+                    <th>
+                        Platform
+                        <br>
+                        <select id="filterPlatform" onchange="filterTable()">
+                            <option value="">All</option>
+                            <option value="Windows">Windows</option>
+                            <option value="Linux">Linux</option>
+                        </select>
+                    </th>
                     <th>CVE</th>
                     <th>MITRE Defend</th>
                     <th>Mitigation</th>
@@ -153,6 +156,8 @@
             const keyword = document.getElementById('keywordSearch').value.toLowerCase();
             const filterDetectionName = document.getElementById('filterDetectionName').value.toLowerCase();
             const filterTactic = document.getElementById('filterTactic').value.toLowerCase();
+            const filterTechnique = document.getElementById('filterTechnique').value.toLowerCase();
+            const filterPlatform = document.getElementById('filterPlatform').value.toLowerCase();
             const table = document.getElementById('detectionTable');
             const rows = table.getElementsByTagName('tr');
 
@@ -160,11 +165,15 @@
                 const cells = rows[i].getElementsByTagName('td');
                 const detectionName = cells[0]?.innerText.toLowerCase();
                 const tactic = cells[1]?.innerText.toLowerCase();
+                const technique = cells[2]?.innerText.toLowerCase();
+                const platform = cells[3]?.innerText.toLowerCase();
                 const matchesKeyword = !keyword || rows[i].innerText.toLowerCase().includes(keyword);
                 const matchesDetectionName = !filterDetectionName || detectionName.includes(filterDetectionName);
                 const matchesTactic = !filterTactic || tactic.includes(filterTactic);
+                const matchesTechnique = !filterTechnique || technique.includes(filterTechnique);
+                const matchesPlatform = !filterPlatform || platform.includes(filterPlatform);
 
-                rows[i].style.display = matchesKeyword && matchesDetectionName && matchesTactic ? '' : 'none';
+                rows[i].style.display = matchesKeyword && matchesDetectionName && matchesTactic && matchesTechnique && matchesPlatform ? '' : 'none';
             }
         }
     </script>
