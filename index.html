@@ -14,6 +14,23 @@
             text-align: center;
             color: #333;
         }
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 50%;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
         .table-container {
             margin: 20px auto;
             max-width: 90%;
@@ -50,21 +67,38 @@
         a:hover {
             text-decoration: underline;
         }
-        @media (max-width: 768px) {
-            table {
-                font-size: 14px;
-            }
-        }
     </style>
 </head>
 <body>
     <h1>Detection</h1>
+    
+    <div class="search-container">
+        <input type="text" id="keywordSearch" placeholder="Search for detections...">
+        <button onclick="filterTable()">Search</button>
+    </div>
+
     <div class="table-container">
-        <table>
+        <table id="detectionTable">
             <thead>
                 <tr>
-                    <th>Detection Name</th>
-                    <th>MITRE Tactic</th>
+                    <th>
+                        Detection Name
+                        <br>
+                        <select id="filterDetectionName" onchange="filterTable()">
+                            <option value="">All</option>
+                            <option value="Example Detection">Example Detection</option>
+                            <option value="Another Detection">Another Detection</option>
+                        </select>
+                    </th>
+                    <th>
+                        MITRE Tactic
+                        <br>
+                        <select id="filterTactic" onchange="filterTable()">
+                            <option value="">All</option>
+                            <option value="Initial Access">Initial Access</option>
+                            <option value="Execution">Execution</option>
+                        </select>
+                    </th>
                     <th>MITRE Technique/ Sub-technique</th>
                     <th>Platform</th>
                     <th>CVE</th>
@@ -75,7 +109,6 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Add rows here -->
                 <tr>
                     <td><a href="detection1.html" target="_blank">Example Detection</a></td>
                     <td>Initial Access</td>
@@ -101,5 +134,26 @@
             </tbody>
         </table>
     </div>
+
+    <script>
+        function filterTable() {
+            const keyword = document.getElementById('keywordSearch').value.toLowerCase();
+            const filterDetectionName = document.getElementById('filterDetectionName').value.toLowerCase();
+            const filterTactic = document.getElementById('filterTactic').value.toLowerCase();
+            const table = document.getElementById('detectionTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                const detectionName = cells[0]?.innerText.toLowerCase();
+                const tactic = cells[1]?.innerText.toLowerCase();
+                const matchesKeyword = !keyword || rows[i].innerText.toLowerCase().includes(keyword);
+                const matchesDetectionName = !filterDetectionName || detectionName.includes(filterDetectionName);
+                const matchesTactic = !filterTactic || tactic.includes(filterTactic);
+
+                rows[i].style.display = matchesKeyword && matchesDetectionName && matchesTactic ? '' : 'none';
+            }
+        }
+    </script>
 </body>
 </html>
