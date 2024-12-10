@@ -53,6 +53,15 @@
         }
         th {
             font-weight: bold;
+            position: relative;
+        }
+        th .filter-container {
+            display: flex;
+            align-items: center;
+        }
+        th .filter-icon {
+            margin-left: 5px;
+            cursor: pointer;
         }
         tr:nth-child(even) {
             background-color: #f2f2f2;
@@ -82,8 +91,10 @@
             <thead>
                 <tr>
                     <th>
-                        Detection Name
-                        <br>
+                        <div class="filter-container">
+                            Detection Name
+                            <span class="filter-icon">🔽</span>
+                        </div>
                         <select id="filterDetectionName" onchange="filterTable()">
                             <option value="">All</option>
                             <option value="Example Detection">Example Detection</option>
@@ -91,8 +102,10 @@
                         </select>
                     </th>
                     <th>
-                        MITRE Tactic
-                        <br>
+                        <div class="filter-container">
+                            MITRE Tactic
+                            <span class="filter-icon">🔽</span>
+                        </div>
                         <select id="filterTactic" onchange="filterTable()">
                             <option value="">All</option>
                             <option value="Initial Access">Initial Access</option>
