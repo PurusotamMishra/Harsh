@@ -1,89 +1,105 @@
-<html>
-	<head>
-		<title> DNIF Hypercloud </title>
-	</head>
-    <body>
-		<h1>This is a Main Heading</h1>
-		<h2>This is a Level 2 Heading</h2>
-		<h3>This is a Level 3 Heading</h3>
-		<h4>This is a Level 4 Heading</h4>
-		<h5>This is a Level 5 Heading</h5>
-		<h6>This is a Level 6 Heading</h6>
-		<h1>This is the Main Heading</h1>
-			<p>This text might be an introduction to the rest of
-				the page. And if the page is a long one it might
-				be split up into several sub-headings.<p>
-		<h2>This is a Sub-Heading</h2>
-			<p>Many long articles have sub-headings so to help
-				you follow the structure of what is being written.
-				There may even be sub-sub-headings (or lower-level
-				headings).</p>
-			<p>This is how we make a word appear <b>bold</b>.</p>
-			<p>Inside a product description you might see some
-				<b>key features</b> in bold.</p>
-		<h2>Another Sub-Heading for <i>italic</i></h2>
-			<p>Here you can see another sub-heading.</p>
-			<p>This is how we make a word appear <i>italic</i>.</p>
-			<p>It's a potato <i>Solanum teberosum</i>.</p>
-			<p>Captain Cook sailed to Australia on the
-				<i>Endeavour</i>.</p>
-		<h2>Superscript and Subscript</h2>
-			<p>On the 4<sup>th</sup> of September you will learn
-				about E=MC<sup>2</sup>.</p>
-			<p>The amount of CO<sub>2</sub> in the atmosphere
-				grew by 2ppm in 2009<sub>1</sub>.</p>
-
-			<p>The Earth<br />gets one hundred tons heavier
-				every day<br />due to falling space dust.</p>
-			<p>Venus is the only planet that rotates clockwise.</p>
-			<hr />
-			<p>Jupiter is bigger than all the other planets
-				combined.</p>
-		<h3>Strong, Emphasis and Quotation</h3>
-			<p><strong>Beware:</strong> Pickpockets operate in
-				this area.</p>
-			<p>This toy has many small pieces and is <strong>not
-				suitable for children under five years old.
-				</strong></p>
-			<p>I <em>think</em> Ivy was the first.</p>
-			<p>I think <em>Ivy</em> was the first.</p>
-			<p>I think Ivy was the <em>first</em>.</p>
-			<blockquote cite="http://en.wikipedia.org/wiki/Winnie-the-Pooh">
-				<p>Did you ever stop to think, and forget to start
-					again?</p>
-				</blockquote>
-			<p>As A.A. Milne said, <q>Some people talk to
-				animals. Not many listen though. That's the
-				problem.</q></p>
-			<p><b>Abbreviations & Acronyms</b></p>
-			<p><abbr title="Professor">Prof</abbr> Stephen
-				Hawking is a theoretical physicist and
-				cosmologist.</p>
-			<p><abbr title="National Aeronautics and Space
-				Administration">NASA</abbr> do some crazy
-				space stuff.</p>
-			<p><acronym title="National Aeronautics and Space
-				Administration">NASA</acronym> do some crazy
-				space stuff.</p>
-			<p><b>Citations and Definitions</b></p>
-			<p><cite>A Brief History of Time</cite> by Stephen
-				Hawking has sold over ten million copies
-				worldwide.</p>
-			<p>A <dfn>black hole</dfn> is a region of space from
-				which nothing, not even light, can escape.</p>
-
-			<p><b>Address</b></p>
-			<address>
-				<p><a href="mailto:homer@example.org">
-					homer@example.org</a></p>
-				<p>742 Evergreen Terrace, Springfield.</p>
-				</address>
-			
-			<p><b>Change to Content</b></p>
-			<p>It was the <del>worst</del> <ins>best</ins> idea
-				she had ever had.</p>
-			<p>Laptop computer:</p>
-				<p><s>Was $995</s></p>
-				<p>Now only $375</p>
-	</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .table-container {
+            margin: 20px auto;
+            max-width: 90%;
+            overflow-x: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        thead {
+            background-color: #4CAF50;
+            color: white;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            table {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Detection</h1>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Detection Name</th>
+                    <th>MITRE Tactic</th>
+                    <th>MITRE Technique/ Sub-technique</th>
+                    <th>Platform</th>
+                    <th>CVE</th>
+                    <th>MITRE Defend</th>
+                    <th>Mitigation</th>
+                    <th>NIST</th>
+                    <th>CIST</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Add rows here -->
+                <tr>
+                    <td><a href="detection1.html" target="_blank">Example Detection</a></td>
+                    <td>Initial Access</td>
+                    <td>Phishing (T1566)</td>
+                    <td>Windows</td>
+                    <td>CVE-2023-12345</td>
+                    <td>Monitor Email Traffic</td>
+                    <td>Employee Training</td>
+                    <td>SP 800-53</td>
+                    <td>4.1.1</td>
+                </tr>
+                <tr>
+                    <td><a href="detection2.html" target="_blank">Another Detection</a></td>
+                    <td>Execution</td>
+                    <td>PowerShell (T1059.001)</td>
+                    <td>Linux</td>
+                    <td>CVE-2023-67890</td>
+                    <td>Command Line Auditing</td>
+                    <td>Application Whitelisting</td>
+                    <td>SP 800-171</td>
+                    <td>4.2.2</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
 </html>
