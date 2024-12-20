@@ -8,7 +8,7 @@
     <script type="module">
         var fileNames = [];
         var hashedDigit = -1
-        const contentDiv = document.body;
+        const contentDiv = document.getElementById("hello");
         async function fetchFileNames() {
             const response = await fetch(`/assets/detectionFiles.json`);
             fileNames = await response.json();
@@ -21,7 +21,6 @@
             console.log(hash)
 
             if (hash) {
-                // Example of mapping hash to different content
                 if (hash === "") {
                     contentDiv.innerHTML = `# This is empty hash content the content`;
                 } else if (/^\d+$/.test(hash.split('#/')[1])) {
@@ -46,7 +45,59 @@
             console.log(data);
             var newParagraph = document.createElement("p");
             newParagraph.textContent = JSON.stringify(data);
-            document.body.appendChild(newParagraph);
+            document.getElementById("hello").appendChild(newParagraph);
+
+
+            var fileTitle = document.getElementById("knowledge-base-file-title");
+            fileTitle.innerText = data['Detection Name'];
+
+            var detectionName = document.getElementById("knowledge-base-detection-name");
+            detectionName.innerText = data['Detection Name'];
+
+            var detectionDesc = document.getElementById("knowledge-base-description");
+            detectionDesc.innerText = data['Description'];
+
+
+            var detectionLog = document.getElementById("knowledge-base-logging-required");
+            data['Logging Required'].forEach(log => {
+                const li = document.createElement("li");
+                const p = document.createElement("p");
+
+                p.textContent = log;
+                li.appendChild(p);
+                detectionLog.appendChild(li);
+            });
+
+            var detectionRecommended = document.getElementById("knowledge-base-recommended-actions");
+            data['Recommended Actions'].forEach(log => {
+                const li = document.createElement("li");
+                const p = document.createElement("p");
+
+                p.textContent = log;
+                li.appendChild(p);
+                detectionRecommended.appendChild(li);
+            });
+
+            var detectionConsiderations = document.getElementById("knowledge-base-considerations");
+            data.Considerations.forEach(log => {
+                const li = document.createElement("li");
+                const p = document.createElement("p");
+
+                p.textContent = log;
+                li.appendChild(p);
+                detectionConsiderations.appendChild(li);
+            });
+
+            var detectionReferences = document.getElementById("knowledge-base-references");
+            data.References.forEach(log => {
+                const li = document.createElement("li");
+                const p = document.createElement("p");
+
+                p.textContent = log;
+                li.appendChild(p);
+                detectionReferences.appendChild(li);
+            });
+
         }
 
         fetchFileNames();
@@ -64,8 +115,119 @@
 </head>
 
 <body>
+    <div id="knowledge-base-file-content">
+        <h2 id="knowledge-base-file-title"></h2>
+        <h3>Detection Name</h3>
+        <p id="knowledge-base-detection-name"></p>
+        <h3>Description</h3>
+        <p id="knowledge-base-description"></p>
+        <h3>Annotations</h3>
+        <ul id="knowledge-base-annotations">
+            <!-- <li><strong>CVE</strong>: -</li>
+            <li><strong>Technique</strong>: T1129-Shared Modules</li>
+            <li><strong>Sub-Technique</strong>: -</li>
+            <li><strong>Tactic</strong>: Execution</li>
+            <li><strong>D3FEND</strong>: None</li>
+            <li><strong>Platform</strong>: Linux, Windows, macOS</li>
+            <li><strong>Group</strong>: None</li>
+            <li><strong>Campaign</strong>: None</li>
+            <li><strong>Software</strong>: <a href="https://attack.mitre.org/software/S0373">Astaroth (S0373)</a>, <a
+                    href="https://attack.mitre.org/software/S0438">Attor (S0438)</a>, <a
+                    href="https://attack.mitre.org/software/S0520">BLINDINGCAN (S0520)</a>, <a
+                    href="https://attack.mitre.org/software/S0415">BOOSTWRITE (S0415)</a>, <a
+                    href="https://attack.mitre.org/software/S1039">Bumblebee (S1039)</a>, <a
+                    href="https://attack.mitre.org/software/S0673">DarkWatchman (S0673)</a>, <a
+                    href="https://attack.mitre.org/software/S0567">Dtrack (S0567)</a>, <a
+                    href="https://attack.mitre.org/software/S0377">Ebury (S0377)</a>, <a
+                    href="https://attack.mitre.org/software/S0661">FoggyWeb (S0661)</a>, <a
+                    href="https://attack.mitre.org/software/S0203">Hydraq (S0203)</a>, <a
+                    href="https://attack.mitre.org/software/S0607">KillDisk (S0607)</a>, <a
+                    href="https://attack.mitre.org/software/S0455">Metamorfo (S0455)</a>, <a
+                    href="https://attack.mitre.org/software/S0352">OSX_OCEANLOTUS.D (S0352)</a>, <a
+                    href="https://attack.mitre.org/software/S0196">PUNCHBUGGY (S0196)</a>, <a
+                    href="https://attack.mitre.org/software/S0501">PipeMon (S0501)</a>, <a
+                    href="https://attack.mitre.org/software/S1078">RotaJakiro (S1078)</a>, <a
+                    href="https://attack.mitre.org/software/S0603">Stuxnet (S0603)</a>, <a
+                    href="https://attack.mitre.org/software/S0467">TajMahal (S0467)</a>, <a
+                    href="https://attack.mitre.org/software/S1154">VersaMem (S1154)</a>, <a
+                    href="https://attack.mitre.org/software/S0032">gh0st RAT (S0032)</a></li>
+            <li><strong>NIST</strong>: <a
+                    href="https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-ds">PR.DS</a>, <a
+                    href="https://csf.tools/reference/nist-cybersecurity-framework/v2-0/de/de-cm">DE.CM</a></li>
+            <li><strong>CIS</strong>: <a
+                    href="https://www.cisecurity.org/controls/inventory-and-control-of-software-assets">CIS 2</a></li>
+            <li><strong>Agent</strong>: -</li> -->
+        </ul>
+        <h3>Type</h3>
+        <p id="knowledge-base-type">TTP (Tactics, Techniques, and Procedures)</p>
+        <h3>Logging Required</h3>
+        <ul id="knowledge-base-logging-required">
+            <!-- <li>
+                <p>Sysmon or equivalent endpoint security solution with process creation, file creation, and registry
+                    modification event monitoring enabled.</p>
+            </li>
+            <li>
+                <p>Windows Security Event Logs</p>
+            </li>
+            <li>
+                <p>Process Creation Logs</p>
+            </li>
+            <li>
+                <p>Windows Registry Modification Logs</p>
+            </li> -->
+        </ul>
+        <h3>Recommended Actions</h3>
+        <ul id="knowledge-base-recommended-actions">
+            <!-- <li>
+                <p>Examine the source IP addresses involved in the detected events.</p>
+            </li>
+            <li>
+                <p>Analyze the destination ports targeted by the detected events.</p>
+            </li>
+            <li>
+                <p>Check for any unusual patterns in the event timestamps.</p>
+            </li>
+            <li>
+                <p>Investigate the types of actions recorded in the events.</p>
+            </li>
+            <li>
+                <p>Review the raw event logs for detailed information.</p>
+            </li> -->
+        </ul>
+        <h3>Considerations</h3>
+        <ul id="knowledge-base-considerations">
+            <!-- <li>
+                <p>During peak business hours, there might be a high volume of legitimate traffic passing through the
+                    firewall, which could trigger alerts due to the sheer number of events logged.</p>
+            </li>
+            <li>
+                <p>Routine network maintenance or updates might generate a large number of firewall events, leading to
+                    false positives. Ensure to correlate with maintenance schedules before raising an alert.</p>
+            </li>
+            <li>
+                <p>Incorrect or overly broad firewall rules might log benign traffic as suspicious, causing false
+                    alerts. Verify the firewall configuration to rule out this possibility.</p>
+            </li> -->
+        </ul>
+        <h3>Mitigation</h3>
+        <ul id="knowledge-base-mitigations">
+            <!-- <li><a href="https://attack.mitre.org/mitigations/M1038">Execution Prevention (M1038)</a></li> -->
+        </ul>
+        <h3>References:</h3>
+        <ul id="knowledge-base-references">
+            <!-- <li>MITRE. (n.d.). MITRE ATT&amp;CK. <a href="https://attack.mitre.org/">https://attack.mitre.org/</a></li>
+            <li>Center for Internet Security (CIS). (n.d.). CISecurity homepage. <a
+                    href="https://www.cisecurity.org/">https://www.cisecurity.org/</a></li>
+            <li>MITRE. (n.d.). MITRE D3FEND. <a href="https://d3fend.mitre.org/">https://d3fend.mitre.org/</a></li>
+            <li>National Institute of Standards and Technology. (n.d.). Cybersecurity framework. <a
+                    href="https://www.nist.gov/cyberframework">https://www.nist.gov/cyberframework</a></li> -->
+        </ul>
+    </div>
 
-    <script></script>
+    <hr />
+    <hr />
+    <hr />
+    <div id="hello"></div>
 </body>
 
 </html>

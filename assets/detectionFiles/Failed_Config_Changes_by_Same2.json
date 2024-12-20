@@ -1,5 +1,5 @@
 {
-  "Detection Name": "Failed Config Changes by Same User",
+  "Detection Name": "Failed Config Changes ",
   "Description": "Failed configuration changes by the same user within 15 minutes.",
   "Annotations": [
     {
