@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Base</title>
+    <script type="module">
+        import { jsonFiles } from '../assets/detectionFiles.js';
+        const fileNames = jsonFiles
+
+        var hashedDigit = -1
+        const contentDiv = document.body;
+
+        function loadContentFromHash() {
+            const hash = window.location.hash;
+
+            if (hash) {
+                // Example of mapping hash to different content
+                if (hash === "") {
+                    contentDiv.innerHTML = `# This is empty hash content the content`;
+                } else if (/^\d+$/.test(hash.split('#/')[1])) {
+                    hashedDigit = parseInt(hash.split('#/')[1]);
+                    contentDiv.innerHTML = `# This is the content for ${hash.split('#/')[1]}
+Another set of Markdown content here...`;
+                } else {
+                    contentDiv.innerHTML = `# Unknown Hash
+This hash is not mapped to any content.`;
+                }
+            } else {
+                contentDiv.innerHTML = marked(`# Welcome
+No hash provided. Displaying default content.`);
+            }
+        }
+
+        window.addEventListener('hashchange', loadContentFromHash);
+
+        loadContentFromHash();
+        async function fetchJSONFiles(fileName) {
+                const response = await fetch(`/assets/detectionFiles/${fileNames[hashedDigit]}`);
+                const data = await response.json();
+                console.log(data);
+                var newParagraph = document.createElement("p");
+                newParagraph.textContent = JSON.stringify(data);
+                document.body.appendChild(newParagraph);
+            }
+        console.log(hashedDigit)
+        if (hashedDigit !== -1) {
+            console.log(fileNames[hashedDigit])
+            fetchJSONFiles(fileNames[hashedDigit])
+        }
+
+
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        #content {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script></script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="module" src="./jsonFiles.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 50%;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+
+        .table-container {
+            margin: 20px auto;
+            max-width: 90%;
+            overflow-x: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: #003366;
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        thead>tr:hover {
+            background-color: #072f57;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Detection</h1>
+
+    <div class="search-container">
+        <input type="text" id="keywordSearch" placeholder="Search for detections...">
+        <button onclick="filterTable()">Search</button>
+    </div>
+
+    <div class="table-container">
+        <table id="detectionTable">
+            <thead id="detectionTableHead">
+
+            </thead>
+            <tbody id="detectionTableBody">
+
+            </tbody>
+        </table>
+    </div>
+
+    <script src="./table.js"></script>
+</body>
+
+</html>
