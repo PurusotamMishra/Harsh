@@ -19,8 +19,8 @@
     },
     {
       "Platform": [
-        "Linux,",
-        "Windows,",
+        "Linux",
+        "Windows",
         "macOS"
       ]
     },

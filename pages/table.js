@@ -30,7 +30,8 @@ async function fetchAllFilesContents(fileNames) {
             "technique": (() => {
                 const subTechnique = data.Annotations.find(annotation => annotation["Sub-Technique"])?.["Sub-Technique"];
                 const technique = data.Annotations.find(annotation => annotation.Technique)?.Technique;
-                return subTechnique || technique || null;
+                if (subTechnique && subTechnique !== '-') return subTechnique;
+                return technique || null;
             })(),
             "platform": data.Annotations.find(annotation => annotation.Platform)?.Platform || null,
             "cve": data.Annotations.find(annotation => annotation.CVE)?.CVE || null,
@@ -61,15 +62,10 @@ function generateTableHead() {
 
     tableHead.forEach(item => {
         const th = document.createElement('th');
-
-
         th.textContent = item.name;
-
-
         const select = document.createElement('select');
         select.id = item.id;
         select.setAttribute('onchange', 'filterTable()');
-
 
         const defaultOption = document.createElement('option');
         defaultOption.value = '';
@@ -97,31 +93,30 @@ function renderTable() {
         link.textContent = item.detectionname;
         link.href = `/pages/knowledgeBase.html#/${i}`;
         detectionNameCell.appendChild(link);
-        // detectionNameCell.textContent = item.detectionname;
-        tempFilter.detectionname = item.detectionname.toLowerCase();
+        tempFilter.detectionname = item.detectionname?.toLowerCase();
 
         const tacticCell = document.createElement('td');
         tacticCell.textContent = item.tactic;
-        tempFilter.tactic = item.tactic.toLowerCase();
+        tempFilter.tactic = item.tactic?.toLowerCase();
 
         const techniqueCell = document.createElement('td');
         techniqueCell.textContent = item.technique;
-        tempFilter.technique = item.technique.toLowerCase();
+        tempFilter.technique = item.technique?.toLowerCase();
 
         const platformCell = document.createElement('td');
-        platformCell.textContent = item.platform.join(", ");
+        platformCell.textContent = item.platform?.join(", ");
         tempFilter.platform = []
-        item.platform.forEach(subItem => {
-            tempFilter.platform.push(subItem.toLowerCase())
+        item.platform?.forEach(subItem => {
+            tempFilter.platform?.push(subItem?.toLowerCase())
         })
 
         const cveCell = document.createElement('td');
         cveCell.textContent = item.cve;
-        tempFilter.cve = item.cve.toLowerCase();
+        tempFilter.cve = item.cve?.toLowerCase();
 
         const mitreDefendCell = document.createElement('td');
         tempFilter.mitredefend = [];
-        item.mitredefend.forEach(subItem => {
+        item.mitredefend?.forEach(subItem => {
             if (subItem.URL && subItem.URL !== 'None') {
                 const subItemLink = document.createElement('a');
                 subItemLink.textContent = subItem.D3FEND;
@@ -133,12 +128,12 @@ function renderTable() {
                 subItemLink.textContent = subItem.D3FEND;
                 mitreDefendCell.appendChild(subItemLink);
             }
-            tempFilter.mitredefend.push(subItem.D3FEND.toLowerCase());
+            tempFilter.mitredefend?.push(subItem.D3FEND?.toLowerCase());
         });
 
         const mitigationCell = document.createElement('td');
         tempFilter.mitigation = [];
-        item.mitigation.forEach(subItem => {
+        item.mitigation?.forEach(subItem => {
             if (subItem.URL && subItem.URL !== 'None') {
                 const subItemLink = document.createElement('a');
                 subItemLink.textContent = subItem.Mitigation;
@@ -150,12 +145,12 @@ function renderTable() {
                 subItemLink.textContent = subItem.Mitigation;
                 mitigationCell.appendChild(subItemLink);
             }
-            tempFilter.mitigation.push(subItem.Mitigation.toLowerCase())
+            tempFilter.mitigation.push(subItem.Mitigation?.toLowerCase())
         });
 
         const nistCell = document.createElement('td');
         tempFilter.nist = [];
-        item.nist.forEach(subItem => {
+        item.nist?.forEach(subItem => {
             if (subItem.URL && subItem.URL !== 'None') {
                 const subItemLink = document.createElement('a');
                 subItemLink.textContent = subItem.NIST;
@@ -167,12 +162,12 @@ function renderTable() {
                 subItemLink.textContent = subItem.NIST;
                 nistCell.appendChild(subItemLink);
             }
-            tempFilter.nist.push(subItem.NIST.toLowerCase())
+            tempFilter.nist?.push(subItem.NIST?.toLowerCase())
         });
 
         const cisCell = document.createElement('td');
         tempFilter.cis = [];
-        item.cis.forEach(subItem => {
+        item.cis?.forEach(subItem => {
             if (subItem.URL && subItem.URL !== 'None') {
                 const subItemLink = document.createElement('a');
                 subItemLink.textContent = subItem.CIS;
@@ -184,12 +179,12 @@ function renderTable() {
                 subItemLink.textContent = subItem.CIS;
                 cisCell.appendChild(subItemLink);
             }
-            tempFilter.cis.push(subItem.CIS.toLowerCase())
+            tempFilter.cis.push(subItem.CIS?.toLowerCase())
         });
 
         const groupCell = document.createElement('td');
         tempFilter.group = [];
-        item.group.forEach(subItem => {
+        item.group?.forEach(subItem => {
             if (subItem.URL && subItem.URL !== 'None') {
                 const subItemLink = document.createElement('a');
                 subItemLink.textContent = subItem.Group;
@@ -201,12 +196,12 @@ function renderTable() {
                 subItemLink.textContent = subItem.Group;
                 groupCell.appendChild(subItemLink);
             }
-            tempFilter.group.push(subItem.Group.toLowerCase())
+            tempFilter.group.push(subItem.Group?.toLowerCase())
         })
 
         const campaignCell = document.createElement('td');
         tempFilter.campaign = [];
-        item.campaign.forEach(subItem => {
+        item.campaign?.forEach(subItem => {
             if (subItem.URL && subItem.URL !== 'None') {
                 const subItemLink = document.createElement('a');
                 subItemLink.textContent = subItem.Campaign;
@@ -218,12 +213,12 @@ function renderTable() {
                 subItemLink.textContent = subItem.Campaign;
                 campaignCell.appendChild(subItemLink);
             }
-            tempFilter.campaign.push(subItem.Campaign.toLowerCase())
+            tempFilter.campaign.push(subItem.Campaign?.toLowerCase())
         });
 
         const softwareCell = document.createElement('td');
         tempFilter.software = [];
-        item.software.forEach(subItem => {
+        item.software?.forEach(subItem => {
             if (subItem.URL && subItem.URL !== 'None') {
                 const subItemLink = document.createElement('a');
                 subItemLink.textContent = subItem.Software;
@@ -235,12 +230,12 @@ function renderTable() {
                 subItemLink.textContent = subItem.Software;
                 softwareCell.appendChild(subItemLink);
             }
-            tempFilter.software.push(subItem.Software.toLowerCase())
+            tempFilter.software.push(subItem.Software?.toLowerCase())
         });
 
         const agentCell = document.createElement('td');
         tempFilter.agent = [];
-        item.agent.forEach(subItem => {
+        item.agent?.forEach(subItem => {
             if (subItem.URL && subItem.URL !== 'None') {
                 const subItemLink = document.createElement('a');
                 subItemLink.textContent = subItem.Agent;
@@ -252,7 +247,7 @@ function renderTable() {
                 subItemLink.textContent = subItem.Agent;
                 agentCell.appendChild(subItemLink);
             }
-            tempFilter.agent.push(subItem.Agent.toLowerCase())
+            tempFilter.agent.push(subItem.Agent?.toLowerCase())
         });
 
         row.appendChild(detectionNameCell);
@@ -299,6 +294,12 @@ function populateFilters() {
         }
     });
 
+    for (const key in uniqueValues) {
+        if (Array.isArray(uniqueValues[key])) {
+            uniqueValues[key] = uniqueValues[key].filter(value => value !== null && value !== undefined && value !== '-');
+        }
+    }
+
     filterKeys.forEach(key => {
         const selectElement = document.getElementById(`filter${key}`);
         if (selectElement.id === 'filterDetectionName') {
@@ -340,7 +341,11 @@ function filterTable() {
         mitreDefend: document.getElementById('filterMITREDefend').value.toLowerCase(),
         mitigation: document.getElementById('filterMitigation').value.toLowerCase(),
         nist: document.getElementById('filterNIST').value.toLowerCase(),
-        cis: document.getElementById('filterCIS').value.toLowerCase()
+        cis: document.getElementById('filterCIS').value.toLowerCase(),
+        group: document.getElementById('filterGroup').value.toLowerCase(),
+        software: document.getElementById('filterSoftware').value.toLowerCase(),
+        campaign: document.getElementById('filterCampaign').value.toLowerCase(),
+        agent: document.getElementById('filterAgent').value.toLowerCase()
     };
 
     const table = document.getElementById('detectionTableBody');
@@ -356,10 +361,19 @@ function filterTable() {
             mitreDefend: cells[5]?.innerText.toLowerCase(),
             mitigation: cells[6]?.innerText.toLowerCase(),
             nist: cells[7]?.innerText.toLowerCase(),
-            cis: cells[8]?.innerText.toLowerCase()
+            cis: cells[8]?.innerText.toLowerCase(),
+            group: cells[9]?.innerText.toLowerCase(),
+            software: cells[10]?.innerText.toLowerCase(),
+            campaign: cells[11]?.innerText.toLowerCase(),
+            agent: cells[12]?.innerText.toLowerCase()
         };
+        console.log(rowData)
+        console.log(filterTableContents)
+        console.log(filters)
+
         const matchesFilters = Object.keys(filters).every((filter) => {
-            return !filters[filter] || (rowData[filter]?.includes(filters[filter].trim()));
+            console.log(filterTableContents[i][filter])
+            return !filters[filter] || (filterTableContents[i][filter]?.includes(filters[filter].trim()));
         });
 
 

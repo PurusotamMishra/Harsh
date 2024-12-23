@@ -1,9 +1,9 @@
 {
-  "Detection Name": "Testing",
+  "Detection Name": "Testing viz",
   "Description": "Testing {_fetch * from event where $Stream=FIREWALL AND $Duration=1M limit 5} under investigation.",
   "Annotations": [
     {
-      "CVE": "-"
+      "CVE": ""
     },
     {
       "Technique": "T1129-Shared Modules"
@@ -12,14 +12,14 @@
       "Sub-Technique": "T1129.001-Shared Modules"
     },
     {
-      "Tactic": "Execution"
+      "Tactic": "Impact"
     },
     {
       "D3FEND": []
     },
     {
       "Platform": [
-        "Linux,"
+        "Linux"
       ]
     },
     {
