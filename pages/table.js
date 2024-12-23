@@ -280,15 +280,24 @@ function populateFilters() {
     const uniqueValues = {};
     TableContents.forEach(obj => {
         for (const [key, value] of Object.entries(obj)) {
-            if (Array.isArray(value)) {
-                uniqueValues[key] = [
-                    ...(uniqueValues[key] || []),
-                    ...value
-                ].filter((v, i, arr) => arr.indexOf(v) === i);
-            } else {
+            if (['string', 'number'].includes(typeof value)) {
                 uniqueValues[key] = uniqueValues[key] || [];
                 if (!uniqueValues[key].includes(value)) {
                     uniqueValues[key].push(value);
+                }
+            } else {
+                if (value && value.every(v => typeof v === 'string')) {
+                    uniqueValues[key] = [
+                        ...(uniqueValues[key] || []),
+                        ...value
+                    ].filter((v, i, arr) => arr.indexOf(v) === i);
+                } else if (value) {
+                    let valueArr = []
+                    value.forEach(item => valueArr.push(Object.values(item)[0]))
+                    uniqueValues[key] = [
+                        ...(uniqueValues[key] || []),
+                        ...valueArr
+                    ].filter((v, i, arr) => arr.indexOf(v) === i);
                 }
             }
         }

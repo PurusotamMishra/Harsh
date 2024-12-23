@@ -12,13 +12,12 @@
         async function fetchFileNames() {
             const response = await fetch(`/assets/detectionFiles.json`);
             fileNames = await response.json();
-            console.log(fileNames)
             loadContentFromHash();
         }
 
         function loadContentFromHash() {
             const hash = window.location.hash;
-            console.log(hash)
+
 
             if (hash) {
                 if (hash === "") {
@@ -42,7 +41,7 @@
         async function fetchJSONFiles(fileName) {
             const response = await fetch(`/assets/detectionFiles/${fileName}`);
             const data = await response.json();
-            console.log(data);
+
             var newParagraph = document.createElement("p");
             newParagraph.textContent = JSON.stringify(data);
             document.getElementById("hello").appendChild(newParagraph);
@@ -134,7 +133,6 @@
 
             var detectionMitigations = document.getElementById("knowledge-base-mitigations");
             data.Mitigation.forEach(log => {
-                console.log(log)
                 const a = document.createElement('a');
                 if (log.URL && log.URL !== 'None' && log.URL !== 'NONE') {
                     a.href = log.URL;
