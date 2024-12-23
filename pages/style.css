@@ -105,5 +105,11 @@ a:hover {
     max-width: 300px;
     /* display: flex; */
     overflow: hidden;
+
     /* flex-direction: column; */
+}
+
+.multiValues {
+    display: flex;
+    flex-direction: column;
 }

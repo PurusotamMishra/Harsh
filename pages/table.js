@@ -98,12 +98,16 @@ function renderTable() {
         tempFilter.detectionname = item.detectionname?.toLowerCase();
 
         const tacticCell = document.createElement('td');
-        tacticCell.textContent = item.tactic;
+        const tacticDiv = document.createElement('div');
+        tacticDiv.textContent = item.tactic;
         tempFilter.tactic = item.tactic?.toLowerCase();
+        tacticCell.appendChild(tacticDiv)
 
         const techniqueCell = document.createElement('td');
-        techniqueCell.textContent = item.technique;
+        const techniqueDiv = document.createElement('div');
+        techniqueDiv.textContent = item.technique;
         tempFilter.technique = item.technique?.toLowerCase();
+        techniqueCell.appendChild(techniqueDiv);
 
         const platformCell = document.createElement('td');
         platformCell.textContent = item.platform?.join(", ");
@@ -185,6 +189,7 @@ function renderTable() {
         });
 
         const groupCell = document.createElement('td');
+        const groupDiv = document.createElement('div');
         tempFilter.group = [];
         item.group?.forEach(subItem => {
             if (subItem.URL && subItem.URL !== 'None') {
@@ -192,16 +197,19 @@ function renderTable() {
                 subItemLink.textContent = subItem.Group;
                 subItemLink.href = subItem.URL;
                 subItemLink.target = '_blank';
-                groupCell.appendChild(subItemLink);
+                groupDiv.appendChild(subItemLink);
             } else {
                 const subItemLink = document.createElement('a');
                 subItemLink.textContent = subItem.Group;
-                groupCell.appendChild(subItemLink);
+                groupDiv.appendChild(subItemLink);
             }
             tempFilter.group.push(subItem.Group?.toLowerCase())
-        })
+        });
+        groupDiv.className = 'multiValues';
+        groupCell.appendChild(groupDiv);
 
         const campaignCell = document.createElement('td');
+        const campaignDiv = document.createElement('div');
         tempFilter.campaign = [];
         item.campaign?.forEach(subItem => {
             if (subItem.URL && subItem.URL !== 'None') {
@@ -209,16 +217,19 @@ function renderTable() {
                 subItemLink.textContent = subItem.Campaign;
                 subItemLink.href = subItem.URL;
                 subItemLink.target = '_blank';
-                campaignCell.appendChild(subItemLink);
+                campaignDiv.appendChild(subItemLink);
             } else {
                 const subItemLink = document.createElement('a');
                 subItemLink.textContent = subItem.Campaign;
-                campaignCell.appendChild(subItemLink);
+                campaignDiv.appendChild(subItemLink);
             }
             tempFilter.campaign.push(subItem.Campaign?.toLowerCase())
         });
+        campaignDiv.className = 'multiValues';
+        campaignCell.appendChild(campaignDiv);
 
         const softwareCell = document.createElement('td');
+        const softwareDiv = document.createElement('div');
         tempFilter.software = [];
         item.software?.forEach(subItem => {
             if (subItem.URL && subItem.URL !== 'None') {
@@ -226,14 +237,17 @@ function renderTable() {
                 subItemLink.textContent = subItem.Software;
                 subItemLink.href = subItem.URL;
                 subItemLink.target = '_blank';
-                softwareCell.appendChild(subItemLink);
+                softwareDiv.appendChild(subItemLink);
             } else {
                 const subItemLink = document.createElement('a');
                 subItemLink.textContent = subItem.Software;
-                softwareCell.appendChild(subItemLink);
+                softwareDiv.appendChild(subItemLink);
             }
             tempFilter.software.push(subItem.Software?.toLowerCase())
         });
+        softwareDiv.className = 'multiValues';
+        softwareCell.appendChild(softwareDiv);
+
 
         const agentCell = document.createElement('td');
         tempFilter.agent = [];
