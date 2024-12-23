@@ -8,7 +8,7 @@
     <script type="module">
         var fileNames = [];
         var hashedDigit = -1
-        const contentDiv = document.getElementById("hello");
+        const contentDiv = document.getElementById("error-msg");
         async function fetchFileNames() {
             const response = await fetch(`/assets/detectionFiles.json`);
             fileNames = await response.json();
@@ -24,10 +24,7 @@
                     contentDiv.innerHTML = `# This is empty hash content the content`;
                 } else if (/^\d+$/.test(hash.split('#/')[1])) {
                     hashedDigit = parseInt(hash.split('#/')[1]);
-                    contentDiv.innerHTML = `# This is the content for ${hash.split('#/')[1]}
-                                            Another set of Markdown content here...`;
                     fetchJSONFiles(fileNames[hashedDigit])
-
                 } else {
                     contentDiv.innerHTML = `# Unknown Hash
                                             This hash is not mapped to any content.`;
@@ -41,10 +38,6 @@
         async function fetchJSONFiles(fileName) {
             const response = await fetch(`/assets/detectionFiles/${fileName}`);
             const data = await response.json();
-
-            var newParagraph = document.createElement("p");
-            newParagraph.textContent = JSON.stringify(data);
-            document.getElementById("hello").appendChild(newParagraph);
 
             var fileTitle = document.getElementById("knowledge-base-file-title");
             fileTitle.innerText = data['Detection Name'];
@@ -190,10 +183,7 @@
         </ul>
     </div>
 
-    <hr />
-    <hr />
-    <hr />
-    <div id="hello"></div>
+    <div id="error-msg"></div>
 </body>
 
 </html>

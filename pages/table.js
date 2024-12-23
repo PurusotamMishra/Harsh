@@ -62,7 +62,9 @@ function generateTableHead() {
 
     tableHead.forEach(item => {
         const th = document.createElement('th');
-        th.textContent = item.name;
+        const span = document.createElement('span')
+        span.textContent = item.name;
+        th.appendChild(span)
         const select = document.createElement('select');
         select.id = item.id;
         select.setAttribute('onchange', 'filterTable()');
