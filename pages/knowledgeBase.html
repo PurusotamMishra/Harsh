@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="./knowledgeBase.css" />
 
 <head>
     <meta charset="UTF-8">
@@ -9,9 +10,20 @@
         var fileNames = [];
         var hashedDigit = -1
         const contentDiv = document.getElementById("error-msg");
+        const fileListElement = document.getElementById('file-list');
         async function fetchFileNames() {
             const response = await fetch(`/assets/detectionFiles.json`);
             fileNames = await response.json();
+            console.log(fileNames)
+            fileNames.forEach((file, index) => {
+                console.log(file, index)
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `#/${index}`
+                a.textContent = file;
+                li.appendChild(a);
+                fileListElement.appendChild(li);
+            });
             loadContentFromHash();
         }
 
@@ -155,32 +167,38 @@
 </head>
 
 <body>
-    <div id="knowledge-base-file-content">
-        <h2 id="knowledge-base-file-title"></h2>
-        <h3>Detection Name</h3>
-        <p id="knowledge-base-detection-name"></p>
-        <h3>Description</h3>
-        <p id="knowledge-base-description"></p>
-        <h3>Annotations</h3>
-        <ul id="knowledge-base-annotations">
-        </ul>
-        <h3>Type</h3>
-        <p id="knowledge-base-type">TTP (Tactics, Techniques, and Procedures)</p>
-        <h3>Logging Required</h3>
-        <ul id="knowledge-base-logging-required">
-        </ul>
-        <h3>Recommended Actions</h3>
-        <ul id="knowledge-base-recommended-actions">
-        </ul>
-        <h3>Considerations</h3>
-        <ul id="knowledge-base-considerations">
-        </ul>
-        <h3>Mitigation</h3>
-        <ul id="knowledge-base-mitigations">
-        </ul>
-        <h3>References:</h3>
-        <ul id="knowledge-base-references">
-        </ul>
+    <div id="container">
+        <div id="knowledge-base-file-lists">
+            <h3>Detection Files</h3>
+            <ul id="file-list"></ul>
+        </div>
+        <div id="knowledge-base-file-content">
+            <h2 id="knowledge-base-file-title"></h2>
+            <h3>Detection Name</h3>
+            <p id="knowledge-base-detection-name"></p>
+            <h3>Description</h3>
+            <p id="knowledge-base-description"></p>
+            <h3>Annotations</h3>
+            <ul id="knowledge-base-annotations">
+            </ul>
+            <h3>Type</h3>
+            <p id="knowledge-base-type">TTP (Tactics, Techniques, and Procedures)</p>
+            <h3>Logging Required</h3>
+            <ul id="knowledge-base-logging-required">
+            </ul>
+            <h3>Recommended Actions</h3>
+            <ul id="knowledge-base-recommended-actions">
+            </ul>
+            <h3>Considerations</h3>
+            <ul id="knowledge-base-considerations">
+            </ul>
+            <h3>Mitigation</h3>
+            <ul id="knowledge-base-mitigations">
+            </ul>
+            <h3>References:</h3>
+            <ul id="knowledge-base-references">
+            </ul>
+        </div>
     </div>
 
     <div id="error-msg"></div>
