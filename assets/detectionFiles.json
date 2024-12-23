@@ -1,4 +1,5 @@
 [
     "Failed_Config_Changes_by_Same_User.json",
-    "Failed_Config_Changes_by_Same2.json"
+    "Failed_Config_Changes_by_Same2.json",
+    "Monitor_AWS_Credential_abuse_or_hijacking_v1_128.json"
 ]
