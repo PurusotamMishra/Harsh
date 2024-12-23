@@ -367,12 +367,11 @@ function filterTable() {
             campaign: cells[11]?.innerText.toLowerCase(),
             agent: cells[12]?.innerText.toLowerCase()
         };
-        console.log(rowData)
-        console.log(filterTableContents)
-        console.log(filters)
+        // console.log(rowData)
+        // console.log(filterTableContents)
+        // console.log(filters)
 
         const matchesFilters = Object.keys(filters).every((filter) => {
-            console.log(filterTableContents[i][filter])
             return !filters[filter] || (filterTableContents[i][filter]?.includes(filters[filter].trim()));
         });
 
