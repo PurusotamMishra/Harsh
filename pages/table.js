@@ -8,8 +8,52 @@ const tableHead = [
     { "name": "MITRE Defend", "id": "filterMITREDefend" },
     { "name": "Mitigation", "id": "filterMitigation" },
     { "name": "NIST", "id": "filterNIST" },
-    { "name": "CIST", "id": "filterCIST" }
+    { "name": "CIS", "id": "filterCIS" },
+    { "name": "Group", "id": "filterGroup" },
+    { "name": "Campaign", "id": "filterCampaign" },
+    { "name": "Software", "id": "filterSoftware" },
+    { "name": "Agent", "id": "filterAgent" },
+
 ];
+
+var fileNames = [];
+var TableContents = [];
+var filterTableContents = [];
+
+async function fetchAllFilesContents(fileNames) {
+    for (let i = 0; i < fileNames.length; i++) {
+        const response = await fetch(`/assets/detectionFiles/${fileNames[i]}`);
+        const data = await response.json();
+        const result = {
+            "detectionname": data["Detection Name"],
+            "tactic": data.Annotations.find(annotation => annotation.Tactic)?.Tactic || null,
+            "technique": (() => {
+                const subTechnique = data.Annotations.find(annotation => annotation["Sub-Technique"])?.["Sub-Technique"];
+                const technique = data.Annotations.find(annotation => annotation.Technique)?.Technique;
+                return subTechnique || technique || null;
+            })(),
+            "platform": data.Annotations.find(annotation => annotation.Platform)?.Platform || null,
+            "cve": data.Annotations.find(annotation => annotation.CVE)?.CVE || null,
+            "mitredefend": data.Annotations.find(annotation => annotation.D3FEND)?.D3FEND || null,
+            "mitigation": data.Mitigation || null,
+            "nist": data.Annotations.find(annotation => annotation.NIST)?.NIST || null,
+            "cis": data.Annotations.find(annotation => annotation.CIS)?.CIS || null,
+            "group": data.Annotations.find(annotation => annotation.Group)?.Group || null,
+            "campaign": data.Annotations.find(annotation => annotation.Campaign)?.Campaign || null,
+            "software": data.Annotations.find(annotation => annotation.Software)?.Software || null,
+            "agent": data.Annotations.find(annotation => annotation.Agent)?.Agent || null
+        };
+        TableContents.push(result);
+    }
+    generateTableHead();
+}
+
+async function fetchFileNames() {
+    const response = await fetch(`/assets/detectionFiles.json`);
+    fileNames = await response.json();
+    fetchAllFilesContents(fileNames);
+}
+
 
 function generateTableHead() {
     const thead = document.getElementById('detectionTableHead');
@@ -36,40 +80,15 @@ function generateTableHead() {
     });
 
     thead.appendChild(tr);
-    populateFilters();
+    renderTable();
 }
-
-const data = [
-    {
-        detectionname: "Example Detection",
-        tactic: "Initial Access",
-        technique: "Phishing (T1566)",
-        platform: "Windows",
-        cve: "CVE-2023-12345",
-        mitredefend: "Monitor Email Traffic",
-        mitigation: "Employee Training",
-        nist: "SP 800-53",
-        cist: "4.1.1"
-    },
-    {
-        detectionname: "Another Detection",
-        tactic: "Execution",
-        technique: "PowerShell (T1059.001)",
-        platform: "Linux",
-        cve: "CVE-2023-67890",
-        mitredefend: "Command Line Auditing",
-        mitigation: "Patch Management",
-        nist: "SP 800-171",
-        cist: "4.2.2"
-    }
-];
 
 function renderTable() {
     const tableBody = document.getElementById('detectionTable').getElementsByTagName('tbody')[0];
     tableBody.innerHTML = '';
-
-    for (let i = 0; i < data.length; i++) {
-        const item = data[i];
+    for (let i = 0; i < TableContents.length; i++) {
+        const item = TableContents[i];
+        let tempFilter = {};
 
         const row = document.createElement('tr');
 
@@ -79,30 +98,162 @@ function renderTable() {
         link.href = `/pages/knowledgeBase.html#/${i}`;
         detectionNameCell.appendChild(link);
         // detectionNameCell.textContent = item.detectionname;
+        tempFilter.detectionname = item.detectionname.toLowerCase();
 
         const tacticCell = document.createElement('td');
         tacticCell.textContent = item.tactic;
+        tempFilter.tactic = item.tactic.toLowerCase();
 
         const techniqueCell = document.createElement('td');
         techniqueCell.textContent = item.technique;
+        tempFilter.technique = item.technique.toLowerCase();
 
         const platformCell = document.createElement('td');
-        platformCell.textContent = item.platform;
+        platformCell.textContent = item.platform.join(", ");
+        tempFilter.platform = []
+        item.platform.forEach(subItem => {
+            tempFilter.platform.push(subItem.toLowerCase())
+        })
 
         const cveCell = document.createElement('td');
         cveCell.textContent = item.cve;
+        tempFilter.cve = item.cve.toLowerCase();
 
         const mitreDefendCell = document.createElement('td');
-        mitreDefendCell.textContent = item.mitredefend;
+        tempFilter.mitredefend = [];
+        item.mitredefend.forEach(subItem => {
+            if (subItem.URL && subItem.URL !== 'None') {
+                const subItemLink = document.createElement('a');
+                subItemLink.textContent = subItem.D3FEND;
+                subItemLink.href = subItem.URL;
+                subItemLink.target = '_blank';
+                mitreDefendCell.appendChild(subItemLink);
+            } else {
+                const subItemLink = document.createElement('a');
+                subItemLink.textContent = subItem.D3FEND;
+                mitreDefendCell.appendChild(subItemLink);
+            }
+            tempFilter.mitredefend.push(subItem.D3FEND.toLowerCase());
+        });
 
         const mitigationCell = document.createElement('td');
-        mitigationCell.textContent = item.mitigation;
+        tempFilter.mitigation = [];
+        item.mitigation.forEach(subItem => {
+            if (subItem.URL && subItem.URL !== 'None') {
+                const subItemLink = document.createElement('a');
+                subItemLink.textContent = subItem.Mitigation;
+                subItemLink.href = subItem.URL;
+                subItemLink.target = '_blank';
+                mitigationCell.appendChild(subItemLink);
+            } else {
+                const subItemLink = document.createElement('a');
+                subItemLink.textContent = subItem.Mitigation;
+                mitigationCell.appendChild(subItemLink);
+            }
+            tempFilter.mitigation.push(subItem.Mitigation.toLowerCase())
+        });
 
         const nistCell = document.createElement('td');
-        nistCell.textContent = item.nist;
+        tempFilter.nist = [];
+        item.nist.forEach(subItem => {
+            if (subItem.URL && subItem.URL !== 'None') {
+                const subItemLink = document.createElement('a');
+                subItemLink.textContent = subItem.NIST;
+                subItemLink.href = subItem.URL;
+                subItemLink.target = '_blank';
+                nistCell.appendChild(subItemLink);
+            } else {
+                const subItemLink = document.createElement('a');
+                subItemLink.textContent = subItem.NIST;
+                nistCell.appendChild(subItemLink);
+            }
+            tempFilter.nist.push(subItem.NIST.toLowerCase())
+        });
 
-        const cistCell = document.createElement('td');
-        cistCell.textContent = item.cist;
+        const cisCell = document.createElement('td');
+        tempFilter.cis = [];
+        item.cis.forEach(subItem => {
+            if (subItem.URL && subItem.URL !== 'None') {
+                const subItemLink = document.createElement('a');
+                subItemLink.textContent = subItem.CIS;
+                subItemLink.href = subItem.URL;
+                subItemLink.target = '_blank';
+                cisCell.appendChild(subItemLink);
+            } else {
+                const subItemLink = document.createElement('a');
+                subItemLink.textContent = subItem.CIS;
+                cisCell.appendChild(subItemLink);
+            }
+            tempFilter.cis.push(subItem.CIS.toLowerCase())
+        });
+
+        const groupCell = document.createElement('td');
+        tempFilter.group = [];
+        item.group.forEach(subItem => {
+            if (subItem.URL && subItem.URL !== 'None') {
+                const subItemLink = document.createElement('a');
+                subItemLink.textContent = subItem.Group;
+                subItemLink.href = subItem.URL;
+                subItemLink.target = '_blank';
+                groupCell.appendChild(subItemLink);
+            } else {
+                const subItemLink = document.createElement('a');
+                subItemLink.textContent = subItem.Group;
+                groupCell.appendChild(subItemLink);
+            }
+            tempFilter.group.push(subItem.Group.toLowerCase())
+        })
+
+        const campaignCell = document.createElement('td');
+        tempFilter.campaign = [];
+        item.campaign.forEach(subItem => {
+            if (subItem.URL && subItem.URL !== 'None') {
+                const subItemLink = document.createElement('a');
+                subItemLink.textContent = subItem.Campaign;
+                subItemLink.href = subItem.URL;
+                subItemLink.target = '_blank';
+                campaignCell.appendChild(subItemLink);
+            } else {
+                const subItemLink = document.createElement('a');
+                subItemLink.textContent = subItem.Campaign;
+                campaignCell.appendChild(subItemLink);
+            }
+            tempFilter.campaign.push(subItem.Campaign.toLowerCase())
+        });
+
+        const softwareCell = document.createElement('td');
+        tempFilter.software = [];
+        item.software.forEach(subItem => {
+            if (subItem.URL && subItem.URL !== 'None') {
+                const subItemLink = document.createElement('a');
+                subItemLink.textContent = subItem.Software;
+                subItemLink.href = subItem.URL;
+                subItemLink.target = '_blank';
+                softwareCell.appendChild(subItemLink);
+            } else {
+                const subItemLink = document.createElement('a');
+                subItemLink.textContent = subItem.Software;
+                softwareCell.appendChild(subItemLink);
+            }
+            tempFilter.software.push(subItem.Software.toLowerCase())
+        });
+
+        const agentCell = document.createElement('td');
+        tempFilter.agent = [];
+        item.agent.forEach(subItem => {
+            if (subItem.URL && subItem.URL !== 'None') {
+                const subItemLink = document.createElement('a');
+                subItemLink.textContent = subItem.Agent;
+                subItemLink.href = subItem.URL;
+                subItemLink.target = '_blank';
+                agentCell.appendChild(subItemLink);
+            } else {
+                const subItemLink = document.createElement('a');
+                subItemLink.textContent = subItem.Agent;
+                agentCell.appendChild(subItemLink);
+            }
+            tempFilter.agent.push(subItem.Agent.toLowerCase())
+        });
 
         row.appendChild(detectionNameCell);
         row.appendChild(tacticCell);
@@ -112,37 +263,71 @@ function renderTable() {
         row.appendChild(mitreDefendCell);
         row.appendChild(mitigationCell);
         row.appendChild(nistCell);
-        row.appendChild(cistCell);
+        row.appendChild(cisCell);
+        row.appendChild(groupCell);
+        row.appendChild(campaignCell);
+        row.appendChild(softwareCell);
+        row.appendChild(agentCell);
 
         tableBody.appendChild(row);
+        filterTableContents = filterTableContents.concat(tempFilter);
     };
+    populateFilters();
 }
 
 
 function populateFilters() {
     const filterKeys = [
         'DetectionName', 'Tactic', 'Technique', 'Platform', 'CVE',
-        'MITREDefend', 'Mitigation', 'NIST', 'CIST'
+        'MITREDefend', 'Mitigation', 'NIST', 'CIS', 'Group', 'Campaign', 'Software', 'Agent'
     ];
+
+    const uniqueValues = {};
+    TableContents.forEach(obj => {
+        for (const [key, value] of Object.entries(obj)) {
+            if (Array.isArray(value)) {
+                uniqueValues[key] = [
+                    ...(uniqueValues[key] || []),
+                    ...value
+                ].filter((v, i, arr) => arr.indexOf(v) === i);
+            } else {
+                uniqueValues[key] = uniqueValues[key] || [];
+                if (!uniqueValues[key].includes(value)) {
+                    uniqueValues[key].push(value);
+                }
+            }
+        }
+    });
 
     filterKeys.forEach(key => {
         const selectElement = document.getElementById(`filter${key}`);
         if (selectElement.id === 'filterDetectionName') {
             selectElement.style.display = 'none';
         }
-        const uniqueValues = [...new Set(data.map(item => item[key.toLowerCase()]))];
         selectElement.innerHTML = '<option value="">All</option>';
-
-        uniqueValues.forEach(value => {
+        let value = uniqueValues[key.toLowerCase()]
+        if (['string', 'number'].includes(typeof value)) {
             const option = document.createElement('option');
             option.value = value;
             option.textContent = value;
             selectElement.appendChild(option);
-        });
+        } else if (typeof value === 'object') {
+            value.forEach(subItem => {
+                if (['number', 'string'].includes(typeof subItem)) {
+                    const option = document.createElement('option');
+                    option.value = subItem;
+                    option.textContent = subItem;
+                    selectElement.appendChild(option);
+                } else {
+                    const option = document.createElement('option');
+                    option.value = Object.values(subItem)[0];
+                    option.textContent = Object.values(subItem)[0];
+                    selectElement.appendChild(option);
+                }
+            });
+        }
     });
-    renderTable();
 }
-generateTableHead();
 
 
 function filterTable() {
@@ -155,7 +340,7 @@ function filterTable() {
         mitreDefend: document.getElementById('filterMITREDefend').value.toLowerCase(),
         mitigation: document.getElementById('filterMitigation').value.toLowerCase(),
         nist: document.getElementById('filterNIST').value.toLowerCase(),
-        cist: document.getElementById('filterCIST').value.toLowerCase()
+        cis: document.getElementById('filterCIS').value.toLowerCase()
     };
 
     const table = document.getElementById('detectionTableBody');
@@ -171,7 +356,7 @@ function filterTable() {
             mitreDefend: cells[5]?.innerText.toLowerCase(),
             mitigation: cells[6]?.innerText.toLowerCase(),
             nist: cells[7]?.innerText.toLowerCase(),
-            cist: cells[8]?.innerText.toLowerCase()
+            cis: cells[8]?.innerText.toLowerCase()
         };
         const matchesFilters = Object.keys(filters).every((filter) => {
             return !filters[filter] || (rowData[filter]?.includes(filters[filter].trim()));
@@ -181,3 +366,9 @@ function filterTable() {
         rows[i].style.display = matchesFilters ? '' : 'none';
     }
 }
+
+
+
+window.onload = function () {
+    fetchFileNames();
+};

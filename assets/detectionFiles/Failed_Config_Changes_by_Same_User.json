@@ -1,109 +1,141 @@
 {
-  "Detection Name": "Failed Config Changes by Same User",
-  "Description": "Failed configuration changes by the same user within 15 minutes.",
+  "Detection Name": "Testing",
+  "Description": "Testing {_fetch * from event where $Stream=FIREWALL AND $Duration=1M limit 5} under investigation.",
   "Annotations": [
     {
       "CVE": "-"
     },
     {
-      "Technique": "T1565-Data Manipulation"
+      "Technique": "T1129-Shared Modules"
     },
     {
-      "Sub-Technique": "T1565.001-Data Manipulation: Stored Data Manipulation"
+      "Sub-Technique": "-"
     },
     {
-      "Tactic": "Impact"
+      "Tactic": "Execution"
     },
     {
-      "D3FEND": [
-        {
-          "D3FEND": "D3-FIM",
-          "URL": "https://d3fend.mitre.org/technique/d3f:FileIntegrityMonitoring/"
-        },
-        {
-          "D3FEND": "D3-FH",
-          "URL": "https://d3fend.mitre.org/technique/d3f:FileHashing/"
-        },
-        {
-          "D3FEND": "D3-FE",
-          "URL": "https://d3fend.mitre.org/technique/d3f:FileEncryption/"
-        },
-        {
-          "D3FEND": "D3-FR",
-          "URL": "https://d3fend.mitre.org/technique/d3f:FileRemoval/"
-        },
-        {
-          "D3FEND": "D3-LFP",
-          "URL": "https://d3fend.mitre.org/technique/d3f:LocalFilePermissions/"
-        }
+      "D3FEND": []
+    },
+    {
+      "Platform": [
+        "Linux,",
+        "Windows,",
+        "macOS"
       ]
     },
     {
-      "Platform": "Windows, Windows, Windows"
+      "Group": []
     },
     {
-      "Group": [
-        {
-          "Group": "APT38 (G0082)",
-          "URL": "https://attack.mitre.org/groups/G0082"
-        }
-      ]
-    },
-    {
-      "Campaign": [
-        {
-          "Campaign": "None",
-          "URL": "None"
-        }
-      ]
+      "Campaign": []
     },
     {
       "Software": [
         {
-          "Software": "MultiLayer Wiper (S1135)",
-          "URL": "https://attack.mitre.org/software/S1135"
+          "Software": "Astaroth (S0373)",
+          "URL": "https://attack.mitre.org/software/S0373"
         },
         {
-          "Software": "SUNSPOT (S0562)",
-          "URL": "https://attack.mitre.org/software/S0562"
+          "Software": "Attor (S0438)",
+          "URL": "https://attack.mitre.org/software/S0438"
+        },
+        {
+          "Software": "BLINDINGCAN (S0520)",
+          "URL": "https://attack.mitre.org/software/S0520"
+        },
+        {
+          "Software": "BOOSTWRITE (S0415)",
+          "URL": "https://attack.mitre.org/software/S0415"
+        },
+        {
+          "Software": "Bumblebee (S1039)",
+          "URL": "https://attack.mitre.org/software/S1039"
+        },
+        {
+          "Software": "DarkWatchman (S0673)",
+          "URL": "https://attack.mitre.org/software/S0673"
+        },
+        {
+          "Software": "Dtrack (S0567)",
+          "URL": "https://attack.mitre.org/software/S0567"
+        },
+        {
+          "Software": "Ebury (S0377)",
+          "URL": "https://attack.mitre.org/software/S0377"
+        },
+        {
+          "Software": "FoggyWeb (S0661)",
+          "URL": "https://attack.mitre.org/software/S0661"
+        },
+        {
+          "Software": "Hydraq (S0203)",
+          "URL": "https://attack.mitre.org/software/S0203"
+        },
+        {
+          "Software": "KillDisk (S0607)",
+          "URL": "https://attack.mitre.org/software/S0607"
+        },
+        {
+          "Software": "Metamorfo (S0455)",
+          "URL": "https://attack.mitre.org/software/S0455"
+        },
+        {
+          "Software": "OSX_OCEANLOTUS.D (S0352)",
+          "URL": "https://attack.mitre.org/software/S0352"
+        },
+        {
+          "Software": "PUNCHBUGGY (S0196)",
+          "URL": "https://attack.mitre.org/software/S0196"
+        },
+        {
+          "Software": "PipeMon (S0501)",
+          "URL": "https://attack.mitre.org/software/S0501"
+        },
+        {
+          "Software": "RotaJakiro (S1078)",
+          "URL": "https://attack.mitre.org/software/S1078"
+        },
+        {
+          "Software": "Stuxnet (S0603)",
+          "URL": "https://attack.mitre.org/software/S0603"
+        },
+        {
+          "Software": "TajMahal (S0467)",
+          "URL": "https://attack.mitre.org/software/S0467"
+        },
+        {
+          "Software": "VersaMem (S1154)",
+          "URL": "https://attack.mitre.org/software/S1154"
+        },
+        {
+          "Software": "gh0st RAT (S0032)",
+          "URL": "https://attack.mitre.org/software/S0032"
         }
       ]
     },
     {
       "NIST": [
         {
-          "NIST": "DE.AE",
-          "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/de/de-ae"
-        },
-        {
-          "NIST": "DE.CM",
-          "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/de/de-cm"
-        },
-        {
           "NIST": "PR.DS",
           "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-ds"
         },
         {
-          "NIST": "PR.AA",
-          "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-aa"
+          "NIST": "DE.CM",
+          "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/de/de-cm"
         }
       ]
     },
     {
       "CIS": [
         {
-          "CIS": "CIS 6",
-          "URL": "https://www.cisecurity.org/controls/access-control-management"
+          "CIS": "CIS 2",
+          "URL": "https://www.cisecurity.org/controls/inventory-and-control-of-software-assets"
         }
       ]
     },
     {
-      "Agent": [
-        {
-          "Agent": "-",
-          "URL": "None"
-        }
-      ]
+      "Agent": []
     }
   ],
   "Type": "TTP (Tactics, Techniques, and Procedures)",
@@ -114,21 +146,22 @@
     "Windows Registry Modification Logs"
   ],
   "Recommended Actions": [
-    "Identify the specific configuration changes attempted by the user.",
-    "Check for any successful configuration changes by the same user in the recent past.",
-    "Review the user's login activity to see if there are any unusual patterns.",
-    "Check for any other failed actions by the same user in different streams.",
-    "Correlate with threat intelligence to see if the user's IP or actions match any known malicious patterns."
+    "Examine the source IP addresses involved in the detected events.",
+    "Analyze the destination ports targeted by the detected events.",
+    "Check for any unusual patterns in the event timestamps.",
+    "Investigate the types of actions recorded in the events.",
+    "Review the raw event logs for detailed information."
   ],
   "Considerations": [
-    "A user might be testing new configurations and intentionally causing failures to ensure that the system handles errors correctly. This could result in multiple failed configuration changes within a short period.",
-    "Temporary network or system issues could cause legitimate configuration changes to fail repeatedly. These issues might be resolved without any malicious intent, leading to false positive alerts.",
-    "A user might not have the correct permissions to make configuration changes, leading to repeated failed attempts. This could be due to a misconfiguration in the user\u2019s access rights rather than an actual attack."
+    "During peak business hours, there might be a high volume of legitimate traffic passing through the firewall, which could trigger alerts due to the sheer number of events logged.",
+    "Routine network maintenance or updates might generate a large number of firewall events, leading to false positives. Ensure to correlate with maintenance schedules before raising an alert.",
+    "Incorrect or overly broad firewall rules might log benign traffic as suspicious, causing false alerts. Verify the firewall configuration to rule out this possibility."
   ],
   "Mitigation": [
-    "[Encrypt Sensitive Information (M1041)](https://attack.mitre.org/mitigations/M1041)",
-    "[Remote Data Storage (M1029)](https://attack.mitre.org/mitigations/M1029)",
-    "[Restrict File and Directory Permissions (M1022)](https://attack.mitre.org/mitigations/M1022)"
+    {
+      "Mitigation": "Execution Prevention (M1038)",
+      "URL": "https://attack.mitre.org/mitigations/M1038"
+    }
   ],
   "References": [
     "MITRE. (n.d.). MITRE ATT&CK. https://attack.mitre.org/",
