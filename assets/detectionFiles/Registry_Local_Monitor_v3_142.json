@@ -1,0 +1,203 @@
+{
+    "Detection Name": "Registry Local Monitor",
+    "Description": "Investigating Registry Local Monitor attack modifying system registry keys.",
+    "Annotations": [
+        {
+            "CVE": ""
+        },
+        {
+            "Technique": "T1037-Boot or Logon Initialization Scripts"
+        },
+        {
+            "Sub-Technique": "T1037.003-Boot or Logon Initialization Scripts: Network Logon Script"
+        },
+        {
+            "Tactic": "Persistence, Privilege Escalation"
+        },
+        {
+            "D3FEND": [
+                {
+                    "D3FEND": "D3-DF",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:DecoyFile/"
+                },
+                {
+                    "D3FEND": "D3-DNR",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:DecoyNetworkResource/"
+                },
+                {
+                    "D3FEND": "D3-DO",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:DecoyObject/"
+                },
+                {
+                    "D3FEND": "D3-DA",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:DynamicAnalysis/"
+                },
+                {
+                    "D3FEND": "D3-EFA",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:EmulatedFileAnalysis/"
+                },
+                {
+                    "D3FEND": "D3-EAL",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:ExecutableAllowlisting/"
+                },
+                {
+                    "D3FEND": "D3-EDL",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:ExecutableDenylisting/"
+                },
+                {
+                    "D3FEND": "D3-EI",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:ExecutionIsolation/"
+                },
+                {
+                    "D3FEND": "D3-FA",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:FileAnalysis/"
+                },
+                {
+                    "D3FEND": "D3-FCOA",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:FileContentAnalysis/"
+                },
+                {
+                    "D3FEND": "D3-FCR",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:FileContentRules/"
+                },
+                {
+                    "D3FEND": "D3-FE",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:FileEncryption/"
+                },
+                {
+                    "D3FEND": "D3-FEV",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:FileEviction/"
+                },
+                {
+                    "D3FEND": "D3-FH",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:FileHashing/"
+                },
+                {
+                    "D3FEND": "D3-FIM",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:FileIntegrityMonitoring/"
+                },
+                {
+                    "D3FEND": "D3-FR",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:FileRemoval/"
+                },
+                {
+                    "D3FEND": "D3-LFP",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:LocalFilePermissions/"
+                },
+                {
+                    "D3FEND": "D3-PH",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:PlatformHardening/"
+                },
+                {
+                    "D3FEND": "D3-PM",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:PlatformMonitoring/"
+                },
+                {
+                    "D3FEND": "D3-RF",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:RestoreFile/"
+                },
+                {
+                    "D3FEND": "D3-RO",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:RestoreObject/"
+                }
+            ]
+        },
+        {
+            "Platform": [
+                "Windows"
+            ]
+        },
+        {
+            "Group": []
+        },
+        {
+            "Campaign": []
+        },
+        {
+            "Software": []
+        },
+        {
+            "NIST": [
+                {
+                    "NIST": "PR.AA",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-aa"
+                },
+                {
+                    "NIST": "DE.CM",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/de/de-cm"
+                },
+                {
+                    "NIST": "DE.AE",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/de/de-ae"
+                },
+                {
+                    "NIST": "PR.PS",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-ps"
+                },
+                {
+                    "NIST": "ID.IM",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/id/id-im"
+                },
+                {
+                    "NIST": "PR.IR",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-ir"
+                },
+                {
+                    "NIST": "ID.RA",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/id/id-ra"
+                },
+                {
+                    "NIST": "PR.DS",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-ds"
+                }
+            ]
+        },
+        {
+            "CIS": [
+                {
+                    "CIS": "CIS 6",
+                    "URL": "https://www.cisecurity.org/controls/access-control-management"
+                },
+                {
+                    "CIS": "CIS 5",
+                    "URL": "https://www.cisecurity.org/controls/account-management"
+                },
+                {
+                    "CIS": "CIS 4",
+                    "URL": "https://www.cisecurity.org/controls/secure-configuration-of-enterprise-assets-and-software"
+                },
+                {
+                    "CIS": "CIS 3",
+                    "URL": "https://www.cisecurity.org/controls/data-protection"
+                },
+                {
+                    "CIS": "CIS 2",
+                    "URL": "https://www.cisecurity.org/controls/inventory-and-control-of-software-assets"
+                }
+            ]
+        },
+        {
+            "Agent": []
+        }
+    ],
+    "Type": "TTP (Tactics, Techniques, and Procedures)",
+    "Logging Required": [],
+    "Recommended Actions": [],
+    "Considerations": [
+        "During regular system updates or patches, registry modifications might occur in the specified paths. These legitimate changes can trigger false alerts.",
+        "When new printer drivers are installed or existing ones are updated, the registry keys under 'SYSTEM\\CurrentControlSet\\Control\\Print\\Monitors' might be modified, leading to false positives.",
+        "System administrators might make changes to the registry for legitimate reasons, such as configuring system settings or troubleshooting issues. These actions can be misinterpreted as malicious activity."
+    ],
+    "Mitigation": [
+        {
+            "Mitigation": "Restrict File and Directory Permissions (M1022)",
+            "URL": "https://attack.mitre.org/mitigations/M1022"
+        }
+    ],
+    "References": [
+        "MITRE. (n.d.). MITRE ATT&CK. https://attack.mitre.org/",
+        "Center for Internet Security (CIS). (n.d.). CISecurity homepage. https://www.cisecurity.org/",
+        "MITRE. (n.d.). MITRE D3FEND. https://d3fend.mitre.org/",
+        "National Institute of Standards and Technology. (n.d.). Cybersecurity framework. https://www.nist.gov/cyberframework"
+    ]
+}
