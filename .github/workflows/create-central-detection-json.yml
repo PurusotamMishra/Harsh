@@ -1,9 +1,12 @@
-name: Update JSON Filenames
+name: Update Central Detection JSON Filenames
 
 on:
   push:
+    branches:
+    - 'master'
+    - 'main'
     paths:
-      - 'main/assets/detectionFiles/**/*.json'  # Trigger only if JSON files in 'main/assets/detectionFiles/' change.
+    - 'assets/detectionFiles/**/*.json'  # Trigger only if JSON files in 'main/assets/detectionFiles/' change.
 
 jobs:
   update-filenames:
@@ -15,11 +18,11 @@ jobs:
 
       - name: List JSON filenames and generate filenames.js
         run: |
-          # Find all .json files in 'main/assets/detectionFiles/' and generate a JavaScript array of filenames
-          FILES_ARRAY=$(find main/assets/detectionFiles -type f -name "*.json" -exec basename {} \; | sort | awk '{print "\"" $0 "\""}' | paste -sd, -)
+          # Find all .json files in 'assets/detectionFiles/' and generate a JavaScript array of filenames
+          FILES_ARRAY=$(find assets/detectionFiles -type f -name "*.json" -exec basename {} \; | sort | awk '{print "\"" $0 "\""}' | paste -sd, -)
 
           # Create the filenames.js content (just the array, no `const filenames =`)
-          echo "[$FILES_ARRAY]" > filenames.js
+          echo "[$FILES_ARRAY]" > assets/detectionFiles.json
 
       - name: Commit and push changes
         run: |
