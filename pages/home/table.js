@@ -93,7 +93,7 @@ function renderTable() {
         const detectionNameCell = document.createElement('td');
         const link = document.createElement('a');
         link.textContent = item.detectionname;
-        link.href = `/pages/knowledgeBase.html#/${i}`;
+        link.href = `/pages/knowledgeBase/knowledgeBase.html#/${i}`;
         detectionNameCell.appendChild(link);
         tempFilter.detectionname = item.detectionname?.toLowerCase();
 
@@ -121,6 +121,7 @@ function renderTable() {
         tempFilter.cve = item.cve?.toLowerCase();
 
         const mitreDefendCell = document.createElement('td');
+        const mitreDefendDiv = document.createElement('div');
         tempFilter.mitredefend = [];
         item.mitredefend?.forEach(subItem => {
             if (subItem.URL && subItem.URL !== 'None') {
@@ -128,16 +129,19 @@ function renderTable() {
                 subItemLink.textContent = subItem.D3FEND;
                 subItemLink.href = subItem.URL;
                 subItemLink.target = '_blank';
-                mitreDefendCell.appendChild(subItemLink);
+                mitreDefendDiv.appendChild(subItemLink);
             } else {
                 const subItemLink = document.createElement('a');
                 subItemLink.textContent = subItem.D3FEND;
-                mitreDefendCell.appendChild(subItemLink);
+                mitreDefendDiv.appendChild(subItemLink);
             }
             tempFilter.mitredefend?.push(subItem.D3FEND?.toLowerCase());
         });
+        mitreDefendDiv.className = "multiValues";
+        mitreDefendCell.appendChild(mitreDefendDiv);
 
         const mitigationCell = document.createElement('td');
+        const mitigationDiv = document.createElement('div');
         tempFilter.mitigation = [];
         item.mitigation?.forEach(subItem => {
             if (subItem.URL && subItem.URL !== 'None') {
@@ -145,16 +149,19 @@ function renderTable() {
                 subItemLink.textContent = subItem.Mitigation;
                 subItemLink.href = subItem.URL;
                 subItemLink.target = '_blank';
-                mitigationCell.appendChild(subItemLink);
+                mitigationDiv.appendChild(subItemLink);
             } else {
                 const subItemLink = document.createElement('a');
                 subItemLink.textContent = subItem.Mitigation;
-                mitigationCell.appendChild(subItemLink);
+                mitigationDiv.appendChild(subItemLink);
             }
             tempFilter.mitigation.push(subItem.Mitigation?.toLowerCase())
         });
+        mitigationDiv.className = "multiValues";
+        mitigationCell.appendChild(mitigationDiv);
 
         const nistCell = document.createElement('td');
+        const nistDiv = document.createElement('div');
         tempFilter.nist = [];
         item.nist?.forEach(subItem => {
             if (subItem.URL && subItem.URL !== 'None') {
@@ -162,16 +169,19 @@ function renderTable() {
                 subItemLink.textContent = subItem.NIST;
                 subItemLink.href = subItem.URL;
                 subItemLink.target = '_blank';
-                nistCell.appendChild(subItemLink);
+                nistDiv.appendChild(subItemLink);
             } else {
                 const subItemLink = document.createElement('a');
                 subItemLink.textContent = subItem.NIST;
-                nistCell.appendChild(subItemLink);
+                nistDiv.appendChild(subItemLink);
             }
             tempFilter.nist?.push(subItem.NIST?.toLowerCase())
         });
+        nistDiv.className = "multiValues";
+        nistCell.appendChild(nistDiv);
 
         const cisCell = document.createElement('td');
+        const cisDiv = document.createElement('div');
         tempFilter.cis = [];
         item.cis?.forEach(subItem => {
             if (subItem.URL && subItem.URL !== 'None') {
@@ -179,14 +189,16 @@ function renderTable() {
                 subItemLink.textContent = subItem.CIS;
                 subItemLink.href = subItem.URL;
                 subItemLink.target = '_blank';
-                cisCell.appendChild(subItemLink);
+                cisDiv.appendChild(subItemLink);
             } else {
                 const subItemLink = document.createElement('a');
                 subItemLink.textContent = subItem.CIS;
-                cisCell.appendChild(subItemLink);
+                cisDiv.appendChild(subItemLink);
             }
             tempFilter.cis.push(subItem.CIS?.toLowerCase())
         });
+        cisDiv.className = 'multiValues';
+        cisCell.appendChild(cisDiv);
 
         const groupCell = document.createElement('td');
         const groupDiv = document.createElement('div');
@@ -250,6 +262,7 @@ function renderTable() {
 
 
         const agentCell = document.createElement('td');
+        const agentDiv = document.createElement('div');
         tempFilter.agent = [];
         item.agent?.forEach(subItem => {
             if (subItem.URL && subItem.URL !== 'None') {
@@ -257,14 +270,16 @@ function renderTable() {
                 subItemLink.textContent = subItem.Agent;
                 subItemLink.href = subItem.URL;
                 subItemLink.target = '_blank';
-                agentCell.appendChild(subItemLink);
+                agentDiv.appendChild(subItemLink);
             } else {
                 const subItemLink = document.createElement('a');
                 subItemLink.textContent = subItem.Agent;
-                agentCell.appendChild(subItemLink);
+                agentDiv.appendChild(subItemLink);
             }
             tempFilter.agent.push(subItem.Agent?.toLowerCase())
         });
+        agentDiv.className = 'multiValues';
+        agentCell.appendChild(agentDiv);
 
         row.appendChild(detectionNameCell);
         row.appendChild(tacticCell);
