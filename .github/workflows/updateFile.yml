@@ -1,0 +1,30 @@
+name: Update JSON Filenames
+
+on:
+  push:
+    paths:
+      - 'main/assets/detectionFiles/**/*.json'  # Trigger only if JSON files in 'main/assets/detectionFiles/' change.
+
+jobs:
+  update-filenames:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      - name: List JSON filenames and generate filenames.js
+        run: |
+          # Find all .json files in 'main/assets/detectionFiles/' and generate a JavaScript array of filenames
+          FILES_ARRAY=$(find main/assets/detectionFiles -type f -name "*.json" -exec basename {} \; | sort | awk '{print "\"" $0 "\""}' | paste -sd, -)
+
+          # Create the filenames.js content (just the array, no `const filenames =`)
+          echo "[$FILES_ARRAY]" > filenames.js
+
+      - name: Commit and push changes
+        run: |
+          # Check if filenames.js has changed before committing
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          
+          git diff --quiet filenames.js || (git add filenames.js && git commit -m "Update filenames array" && git push)
