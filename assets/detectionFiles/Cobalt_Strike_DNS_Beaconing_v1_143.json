@@ -1,0 +1,216 @@
+{
+    "Detection Name": "Cobalt Strike DNS Beaconing",
+    "Description": "Investigating Cobalt Strike DNS Beaconing using DNS queries for specific patterns.",
+    "Annotations": [
+        {
+            "CVE": ""
+        },
+        {
+            "Technique": "T1071-Application Layer Protocol"
+        },
+        {
+            "Sub-Technique": "T1071.003-Application Layer Protocol: Mail Protocols"
+        },
+        {
+            "Tactic": "Command and Control"
+        },
+        {
+            "D3FEND": [
+                {
+                    "D3FEND": "D3-CSPP",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:Client-serverPayloadProfiling/"
+                },
+                {
+                    "D3FEND": "D3-NTA",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:NetworkTrafficAnalysis/"
+                },
+                {
+                    "D3FEND": "D3-NTF",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:NetworkTrafficFiltering/"
+                },
+                {
+                    "D3FEND": "D3-OTF",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:OutboundTrafficFiltering/"
+                },
+                {
+                    "D3FEND": "D3-PMAD",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:ProtocolMetadataAnomalyDetection/"
+                },
+                {
+                    "D3FEND": "D3-UBA",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:UserBehaviorAnalysis/"
+                }
+            ]
+        },
+        {
+            "Platform": [
+                "Linux",
+                "Network",
+                "Windows",
+                "macOS"
+            ]
+        },
+        {
+            "Group": [
+                {
+                    "Group": "APT28 (G0007)",
+                    "URL": "https://attack.mitre.org/groups/G0007"
+                },
+                {
+                    "Group": "APT32 (G0050)",
+                    "URL": "https://attack.mitre.org/groups/G0050"
+                },
+                {
+                    "Group": "Kimsuky (G0094)",
+                    "URL": "https://attack.mitre.org/groups/G0094"
+                },
+                {
+                    "Group": "SilverTerrier (G0083)",
+                    "URL": "https://attack.mitre.org/groups/G0083"
+                },
+                {
+                    "Group": "Turla (G0010)",
+                    "URL": "https://attack.mitre.org/groups/G0010"
+                }
+            ]
+        },
+        {
+            "Campaign": []
+        },
+        {
+            "Software": [
+                {
+                    "Software": "Agent Tesla (S0331)",
+                    "URL": "https://attack.mitre.org/software/S0331"
+                },
+                {
+                    "Software": "BadPatch (S0337)",
+                    "URL": "https://attack.mitre.org/software/S0337"
+                },
+                {
+                    "Software": "CHOPSTICK (S0023)",
+                    "URL": "https://attack.mitre.org/software/S0023"
+                },
+                {
+                    "Software": "CORESHELL (S0137)",
+                    "URL": "https://attack.mitre.org/software/S0137"
+                },
+                {
+                    "Software": "Cannon (S0351)",
+                    "URL": "https://attack.mitre.org/software/S0351"
+                },
+                {
+                    "Software": "ComRAT (S0126)",
+                    "URL": "https://attack.mitre.org/software/S0126"
+                },
+                {
+                    "Software": "Goopy (S0477)",
+                    "URL": "https://attack.mitre.org/software/S0477"
+                },
+                {
+                    "Software": "IMAPLoader (S1152)",
+                    "URL": "https://attack.mitre.org/software/S1152"
+                },
+                {
+                    "Software": "JPIN (S0201)",
+                    "URL": "https://attack.mitre.org/software/S0201"
+                },
+                {
+                    "Software": "LightNeuron (S0395)",
+                    "URL": "https://attack.mitre.org/software/S0395"
+                },
+                {
+                    "Software": "LunarMail (S1142)",
+                    "URL": "https://attack.mitre.org/software/S1142"
+                },
+                {
+                    "Software": "NavRAT (S0247)",
+                    "URL": "https://attack.mitre.org/software/S0247"
+                },
+                {
+                    "Software": "NightClub (S1090)",
+                    "URL": "https://attack.mitre.org/software/S1090"
+                },
+                {
+                    "Software": "OLDBAIT (S0138)",
+                    "URL": "https://attack.mitre.org/software/S0138"
+                },
+                {
+                    "Software": "RDAT (S0495)",
+                    "URL": "https://attack.mitre.org/software/S0495"
+                },
+                {
+                    "Software": "Remsec (S0125)",
+                    "URL": "https://attack.mitre.org/software/S0125"
+                },
+                {
+                    "Software": "SUGARDUMP (S1042)",
+                    "URL": "https://attack.mitre.org/software/S1042"
+                },
+                {
+                    "Software": "Uroburos (S0022)",
+                    "URL": "https://attack.mitre.org/software/S0022"
+                },
+                {
+                    "Software": "Zebrocy (S0251)",
+                    "URL": "https://attack.mitre.org/software/S0251"
+                }
+            ]
+        },
+        {
+            "NIST": [
+                {
+                    "NIST": "DE.CM",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/de/de-cm"
+                },
+                {
+                    "NIST": "DE.AE",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/de/de-ae"
+                },
+                {
+                    "NIST": "ID.AM",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/id/id-am"
+                },
+                {
+                    "NIST": "PR.IR",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-ir"
+                },
+                {
+                    "NIST": "ID.RA",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/id/id-ra"
+                }
+            ]
+        },
+        {
+            "CIS": [
+                {
+                    "CIS": "CIS 13",
+                    "URL": "https://www.cisecurity.org/controls/network-monitoring-and-defense"
+                }
+            ]
+        },
+        {
+            "Agent": []
+        }
+    ],
+    "Type": "TTP (Tactics, Techniques, and Procedures)",
+    "Logging Required": [],
+    "Recommended Actions": [],
+    "Considerations": [
+        "Some security tools or network monitoring solutions may use DNS queries that match patterns similar to those used by Cobalt Strike for legitimate purposes. These tools might generate DNS queries that look like 'aaa.stage.%' or 'post.1%' as part of their normal operations.",
+        "Internal development teams might use similar DNS query patterns for testing and development purposes. For example, developers might use subdomains like 'aaa.stage.%' or 'post.1%' in their staging environments, which could trigger false positives.",
+        "Misconfigured DNS records or internal DNS naming conventions might inadvertently match the patterns 'aaa.stage.%' or 'post.1%'. This can happen if there are internal systems or applications that use similar naming conventions for their DNS queries."
+    ],
+    "Mitigation": [
+        {
+            "Mitigation": "Network Intrusion Prevention (M1031)",
+            "URL": "https://attack.mitre.org/mitigations/M1031"
+        }
+    ],
+    "References": [
+        "MITRE. (n.d.). MITRE ATT&CK. https://attack.mitre.org/",
+        "Center for Internet Security (CIS). (n.d.). CISecurity homepage. https://www.cisecurity.org/",
+        "MITRE. (n.d.). MITRE D3FEND. https://d3fend.mitre.org/",
+        "National Institute of Standards and Technology. (n.d.). Cybersecurity framework. https://www.nist.gov/cyberframework"
+    ]
+}
