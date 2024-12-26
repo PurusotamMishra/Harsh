@@ -410,7 +410,6 @@ function filterTable() {
         // console.log(rowData)
         // console.log(filterTableContents[i])
         // console.log(filters)
-
         const matchesFilters = Object.keys(filters).every((filter) => {
             return !filters[filter] || (filterTableContents[i][filter]?.includes(filters[filter].trim()));
         });
