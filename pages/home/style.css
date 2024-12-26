@@ -97,8 +97,12 @@ a:hover {
 }
 
 #detectionTableHead>tr>th>span {
-    display: block;
+    display: flex;
     min-width: 100px;
+    line-height: 16px;
+    height: 32px;
+    align-content: center;
+    flex-wrap: wrap;
 }
 
 #detectionTableBody>td {
