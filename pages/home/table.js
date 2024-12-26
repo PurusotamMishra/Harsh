@@ -408,19 +408,21 @@ function filterTable() {
             agent: cells[12]?.innerText.toLowerCase()
         };
         // console.log(rowData)
-        // console.log(filterTableContents)
+        // console.log(filterTableContents[i])
         // console.log(filters)
 
         const matchesFilters = Object.keys(filters).every((filter) => {
             return !filters[filter] || (filterTableContents[i][filter]?.includes(filters[filter].trim()));
         });
+        const inputValueOfSearch = document.getElementById('keywordSearch').value.toLowerCase();
+        const filterBySearchInput = JSON.stringify(Object.values(filterTableContents[i])).includes(inputValueOfSearch)
 
-
-        rows[i].style.display = matchesFilters ? '' : 'none';
+        rows[i].style.display = inputValueOfSearch ?
+            filterBySearchInput && matchesFilters ?
+                '' : 'none'
+            : matchesFilters ? '' : 'none';
     }
 }
-
-
 
 window.onload = function () {
     fetchFileNames();
