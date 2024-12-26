@@ -1,0 +1,117 @@
+{
+    "Detection Name": "Registry Local Port Monitor",
+    "Description": "Investigating Registry Local Port Monitor modifications in Windows registry.",
+    "Annotations": [
+        {
+            "CVE": ""
+        },
+        {
+            "Technique": "T1037-Boot or Logon Initialization Scripts"
+        },
+        {
+            "Sub-Technique": "T1037.001-Boot or Logon Initialization Scripts: Logon Script (Windows)"
+        },
+        {
+            "Tactic": "Persistence, Privilege Escalation"
+        },
+        {
+            "D3FEND": [
+                {
+                    "D3FEND": "D3-FIM",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:FileIntegrityMonitoring/"
+                },
+                {
+                    "D3FEND": "D3-EAL",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:ExecutableAllowlisting/"
+                },
+                {
+                    "D3FEND": "D3-EDL",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:ExecutableDenylisting/"
+                }
+            ]
+        },
+        {
+            "Platform": [
+                "Windows"
+            ]
+        },
+        {
+            "Group": [
+                {
+                    "Group": "APT28 (G0007)",
+                    "URL": "https://attack.mitre.org/groups/G0007"
+                },
+                {
+                    "Group": "Cobalt Group (G0080)",
+                    "URL": "https://attack.mitre.org/groups/G0080"
+                }
+            ]
+        },
+        {
+            "Campaign": []
+        },
+        {
+            "Software": [
+                {
+                    "Software": "Attor (S0438)",
+                    "URL": "https://attack.mitre.org/software/S0438"
+                },
+                {
+                    "Software": "JHUHUGIT (S0044)",
+                    "URL": "https://attack.mitre.org/software/S0044"
+                },
+                {
+                    "Software": "KGH_SPY (S0526)",
+                    "URL": "https://attack.mitre.org/software/S0526"
+                },
+                {
+                    "Software": "Zebrocy (S0251)",
+                    "URL": "https://attack.mitre.org/software/S0251"
+                }
+            ]
+        },
+        {
+            "NIST": [
+                {
+                    "NIST": "PR.AA",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-aa"
+                },
+                {
+                    "NIST": "PR.PS",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-ps"
+                }
+            ]
+        },
+        {
+            "CIS": [
+                {
+                    "CIS": "CIS 4",
+                    "URL": "https://www.cisecurity.org/controls/secure-configuration-of-enterprise-assets-and-software"
+                }
+            ]
+        },
+        {
+            "Agent": []
+        }
+    ],
+    "Type": "TTP (Tactics, Techniques, and Procedures)",
+    "Logging Required": [],
+    "Recommended Actions": [],
+    "Considerations": [
+        "When a new printer driver is installed or an existing one is updated, it may modify registry keys under 'SYSTEM\\CurrentControlSet\\Control\\Print\\Monitors'. This legitimate activity can trigger a false positive alert.",
+        "During routine system maintenance or Windows updates, registry keys related to print monitors may be modified. These changes are part of normal system operations and can result in false alerts.",
+        "Certain third-party software, especially those related to printing or system monitoring, may modify the registry keys in question. These legitimate modifications can be mistaken for malicious activity, leading to false positives."
+    ],
+    "Mitigation": [
+        {
+            "Mitigation": "Restrict Registry Permissions (M1024)",
+            "URL": "https://attack.mitre.org/mitigations/M1024"
+        }
+    ],
+    "References": [
+        "MITRE. (n.d.). MITRE ATT&CK. https://attack.mitre.org/",
+        "Center for Internet Security (CIS). (n.d.). CISecurity homepage. https://www.cisecurity.org/",
+        "MITRE. (n.d.). MITRE D3FEND. https://d3fend.mitre.org/",
+        "National Institute of Standards and Technology. (n.d.). Cybersecurity framework. https://www.nist.gov/cyberframework"
+    ]
+}
