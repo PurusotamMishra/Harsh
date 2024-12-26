@@ -378,7 +378,7 @@ function filterTable() {
         technique: document.getElementById('filterTechnique').value.toLowerCase(),
         platform: document.getElementById('filterPlatform').value.toLowerCase(),
         cve: document.getElementById('filterCVE').value.toLowerCase(),
-        mitreDefend: document.getElementById('filterMITREDefend').value.toLowerCase(),
+        mitredefend: document.getElementById('filterMITREDefend').value.toLowerCase(),
         mitigation: document.getElementById('filterMitigation').value.toLowerCase(),
         nist: document.getElementById('filterNIST').value.toLowerCase(),
         cis: document.getElementById('filterCIS').value.toLowerCase(),

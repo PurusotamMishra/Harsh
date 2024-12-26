@@ -17,7 +17,7 @@
         {
             "D3FEND": [
                 {
-                    "D3FEND": "D3-PSA",
+                    "D3FEND": "D3-PA",
                     "URL": "https://d3fend.mitre.org/technique/d3f:ProcessSpawnAnalysis/"
                 }
             ]
