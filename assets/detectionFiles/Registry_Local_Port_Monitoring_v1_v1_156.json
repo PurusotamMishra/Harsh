@@ -1,0 +1,155 @@
+{
+    "Detection Name": "Registry Local Port Monitoring v1",
+    "Description": "Monitoring registry changes in Print Monitors for persistence.",
+    "Annotations": [
+        {
+            "CVE": ""
+        },
+        {
+            "Technique": "T1037-Boot or Logon Initialization Scripts"
+        },
+        {
+            "Sub-Technique": "T1037.004-Boot or Logon Initialization Scripts: RC Scripts"
+        },
+        {
+            "Tactic": [
+                "Persistence",
+                "Privilege Escalation"
+            ]
+        },
+        {
+            "D3FEND": [
+                {
+                    "D3FEND": "D3-CI",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:ConfigurationInventory/"
+                },
+                {
+                    "D3FEND": "D3-FIM",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:FileIntegrityMonitoring/"
+                },
+                {
+                    "D3FEND": "D3-OSM",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:OperatingSystemMonitoring/"
+                }
+            ]
+        },
+        {
+            "Platform": [
+                "Linux",
+                "Network",
+                "macOS"
+            ]
+        },
+        {
+            "Group": [
+                {
+                    "Group": "APT29 (G0016)",
+                    "URL": "https://attack.mitre.org/groups/G0016"
+                }
+            ]
+        },
+        {
+            "Campaign": []
+        },
+        {
+            "Software": [
+                {
+                    "Software": "Cyclops Blink (S0687)",
+                    "URL": "https://attack.mitre.org/software/S0687"
+                },
+                {
+                    "Software": "Green Lambert (S0690)",
+                    "URL": "https://attack.mitre.org/software/S0690"
+                },
+                {
+                    "Software": "HiddenWasp (S0394)",
+                    "URL": "https://attack.mitre.org/software/S0394"
+                },
+                {
+                    "Software": "iKitten (S0278)",
+                    "URL": "https://attack.mitre.org/software/S0278"
+                }
+            ]
+        },
+        {
+            "NIST": [
+                {
+                    "NIST": "PR.PS",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-ps"
+                },
+                {
+                    "NIST": "DE.AE",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/de/de-ae"
+                },
+                {
+                    "NIST": "PR.AA",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-aa"
+                },
+                {
+                    "NIST": "ID.RA",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/id/id-ra"
+                },
+                {
+                    "NIST": "PR.DS",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-ds"
+                },
+                {
+                    "NIST": "DE.CM",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/de/de-cm"
+                },
+                {
+                    "NIST": "PR.IR",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-ir"
+                },
+                {
+                    "NIST": "ID.IM",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/id/id-im"
+                }
+            ]
+        },
+        {
+            "CIS": [
+                {
+                    "CIS": "CIS 3",
+                    "URL": "https://www.cisecurity.org/controls/data-protection"
+                },
+                {
+                    "CIS": "CIS 6",
+                    "URL": "https://www.cisecurity.org/controls/access-control-management"
+                },
+                {
+                    "CIS": "CIS 2",
+                    "URL": "https://www.cisecurity.org/controls/inventory-and-control-of-software-assets"
+                },
+                {
+                    "CIS": "CIS 5",
+                    "URL": "https://www.cisecurity.org/controls/account-management"
+                },
+                {
+                    "CIS": "CIS 4",
+                    "URL": "https://www.cisecurity.org/controls/secure-configuration-of-enterprise-assets-and-software"
+                }
+            ]
+        },
+        {
+            "Agent": []
+        }
+    ],
+    "Type": "TTP (Tactics, Techniques, and Procedures)",
+    "Logging Required": [],
+    "Recommended Actions": [],
+    "Considerations": [
+        "IT administrators performing routine maintenance tasks",
+        "such as reconfiguring printer settings or troubleshooting printer issues",
+        "may inadvertently modify registry keys. These legitimate administrative actions can trigger the alert falsely."
+    ],
+    "Mitigation": [
+        {
+            "Mitigation": "Restrict File and Directory Permissions (M1022)",
+            "URL": "https://attack.mitre.org/mitigations/M1022"
+        }
+    ],
+    "References": [
+        "National Institute of Standards and Technology. (n.d.). Cybersecurity framework. https://www.nist.gov/cyberframework"
+    ]
+}
