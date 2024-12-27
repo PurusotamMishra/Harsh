@@ -12,7 +12,9 @@
             "Sub-Technique": ""
         },
         {
-            "Tactic": "Persistence, Privilege Escalation"
+            "Tactic": [
+                "Discovery"
+            ]
         },
         {
             "D3FEND": [
@@ -24,7 +26,7 @@
         },
         {
             "Platform": [
-               "chromeOS"
+                "chromeOS"
             ]
         },
         {

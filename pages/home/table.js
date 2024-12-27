@@ -99,9 +99,12 @@ function renderTable() {
 
         const tacticCell = document.createElement('td');
         const tacticDiv = document.createElement('div');
-        tacticDiv.textContent = item.tactic;
-        tempFilter.tactic = item.tactic?.toLowerCase();
-        tacticCell.appendChild(tacticDiv)
+        tacticDiv.textContent = item.tactic?.join(',');
+        tempFilter.tactic = []
+        item.tactic?.forEach(subItem => {
+            tempFilter.tactic?.push(subItem?.toLowerCase())
+        })
+        tacticCell.appendChild(tacticDiv);
 
         const techniqueCell = document.createElement('td');
         const techniqueDiv = document.createElement('div');
