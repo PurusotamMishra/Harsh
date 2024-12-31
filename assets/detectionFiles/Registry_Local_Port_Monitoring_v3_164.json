@@ -1,0 +1,110 @@
+{
+    "Detection Name": "Registry Local Port Monitoring",
+    "Description": "Investigating Registry Local Port Monitoring for unauthorized modifications.",
+    "Annotations": [
+        {
+            "CVE": ""
+        },
+        {
+            "Technique": "T1037-Boot or Logon Initialization Scripts"
+        },
+        {
+            "Sub-Technique": "T1037.002-Boot or Logon Initialization Scripts: Login Hook"
+        },
+        {
+            "Tactic": [
+                "Persistence",
+                "Privilege Escalation"
+            ]
+        },
+        {
+            "D3FEND": [
+                {
+                    "D3FEND": "D3-FIM",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:FileIntegrityMonitoring/"
+                },
+                {
+                    "D3FEND": "D3-PH",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:PlatformHardening/"
+                },
+                {
+                    "D3FEND": "D3-PM",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:PlatformMonitoring/"
+                }
+            ]
+        },
+        {
+            "Platform": [
+                "macOS"
+            ]
+        },
+        {
+            "Group": []
+        },
+        {
+            "Campaign": []
+        },
+        {
+            "Software": []
+        },
+        {
+            "NIST": [
+                {
+                    "NIST": "DE.CM",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/de/de-cm"
+                },
+                {
+                    "NIST": "PR.DS",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-ds"
+                },
+                {
+                    "NIST": "DE.AE",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/de/de-ae"
+                },
+                {
+                    "NIST": "ID.RA",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/id/id-ra"
+                },
+                {
+                    "NIST": "PR.PS",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-ps"
+                }
+            ]
+        },
+        {
+            "CIS": [
+                {
+                    "CIS": "CIS 3",
+                    "URL": "https://www.cisecurity.org/controls/data-protection"
+                },
+                {
+                    "CIS": "CIS 5",
+                    "URL": "https://www.cisecurity.org/controls/account-management"
+                },
+                {
+                    "CIS": "CIS 6",
+                    "URL": "https://www.cisecurity.org/controls/access-control-management"
+                }
+            ]
+        },
+        {
+            "Agent": []
+        }
+    ],
+    "Type": "TTP (Tactics, Techniques, and Procedures)",
+    "Logging Required": [],
+    "Recommended Actions": [],
+    "Considerations": [
+        "When new printers are installed",
+        "the system may update registry settings to include new print monitors. This legitimate activity can also trigger the alert."
+    ],
+    "Mitigation": [
+        {
+            "Mitigation": "Restrict File and Directory Permissions (M1022)",
+            "URL": "https://attack.mitre.org/mitigations/M1022"
+        }
+    ],
+    "References": [
+        "National Institute of Standards and Technology. (n.d.). Cybersecurity framework. https://www.nist.gov/cyberframework"
+    ]
+}
