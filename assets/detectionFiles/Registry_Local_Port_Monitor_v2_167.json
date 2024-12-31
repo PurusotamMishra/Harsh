@@ -1,0 +1,129 @@
+{
+    "Detection Name": "Registry Local Port Monitor",
+    "Description": "Investigating Registry Local Port Monitor attack modifying print monitor settings.",
+    "Annotations": [
+        {
+            "CVE": ""
+        },
+        {
+            "Technique": "T1037-Boot or Logon Initialization Scripts"
+        },
+        {
+            "Sub-Technique": "T1037.004-Boot or Logon Initialization Scripts: RC Scripts"
+        },
+        {
+            "Tactic": [
+                "Persistence",
+                "Privilege Escalation"
+            ]
+        },
+        {
+            "D3FEND": [
+                {
+                    "D3FEND": "D3-CI",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:ConfigurationInventory/"
+                },
+                {
+                    "D3FEND": "D3-FIM",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:FileIntegrityMonitoring/"
+                },
+                {
+                    "D3FEND": "D3-OSM",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:OperatingSystemMonitoring/"
+                },
+                {
+                    "D3FEND": "D3-PH",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:PlatformHardening/"
+                }
+            ]
+        },
+        {
+            "Platform": [
+                "Linux",
+                "Network",
+                "macOS"
+            ]
+        },
+        {
+            "Group": [
+                {
+                    "Group": "APT29 (G0016)",
+                    "URL": "https://attack.mitre.org/groups/G0016"
+                }
+            ]
+        },
+        {
+            "Campaign": []
+        },
+        {
+            "Software": [
+                {
+                    "Software": "Cyclops Blink (S0687)",
+                    "URL": "https://attack.mitre.org/software/S0687"
+                },
+                {
+                    "Software": "Green Lambert (S0690)",
+                    "URL": "https://attack.mitre.org/software/S0690"
+                },
+                {
+                    "Software": "HiddenWasp (S0394)",
+                    "URL": "https://attack.mitre.org/software/S0394"
+                },
+                {
+                    "Software": "iKitten (S0278)",
+                    "URL": "https://attack.mitre.org/software/S0278"
+                }
+            ]
+        },
+        {
+            "NIST": [
+                {
+                    "NIST": "PR.DS",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-ds"
+                },
+                {
+                    "NIST": "PR.AA",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-aa"
+                },
+                {
+                    "NIST": "ID.RA",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/id/id-ra"
+                },
+                {
+                    "NIST": "DE.CM",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/de/de-cm"
+                }
+            ]
+        },
+        {
+            "CIS": [
+                {
+                    "CIS": "CIS 3",
+                    "URL": "https://www.cisecurity.org/controls/data-protection"
+                },
+                {
+                    "CIS": "CIS 4",
+                    "URL": "https://www.cisecurity.org/controls/secure-configuration-of-enterprise-assets-and-software"
+                }
+            ]
+        },
+        {
+            "Agent": []
+        }
+    ],
+    "Type": "TTP (Tactics, Techniques, and Procedures)",
+    "Logging Required": [],
+    "Recommended Actions": [],
+    "Considerations": [
+        "System administrators may perform maintenance tasks that involve modifying registry settings for port monitors. Confirm if any authorized administrative actions were performed around the time of the alert."
+    ],
+    "Mitigation": [
+        {
+            "Mitigation": "Restrict File and Directory Permissions (M1022)",
+            "URL": "https://attack.mitre.org/mitigations/M1022"
+        }
+    ],
+    "References": [
+        "National Institute of Standards and Technology. (n.d.). Cybersecurity framework. https://www.nist.gov/cyberframework"
+    ]
+}
