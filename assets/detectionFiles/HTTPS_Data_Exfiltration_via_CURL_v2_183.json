@@ -1,0 +1,124 @@
+{
+    "Detection Name": "HTTPS Data Exfiltration via CURL",
+    "Description": "Detects HTTPS data exfiltration using CURL with specific command patterns.",
+    "Annotations": [
+        {
+            "CVE": ""
+        },
+        {
+            "Technique": "T1048-Exfiltration Over Alternative Protocol"
+        },
+        {
+            "Sub-Technique": "T1048.003-Exfiltration Over Alternative Protocol: Exfiltration Over Unencrypted Non-C2 Protocol"
+        },
+        {
+            "Tactic": [
+                "Exfiltration"
+            ]
+        },
+        {
+            "D3FEND": [
+                {
+                    "D3FEND": "D3-PSA",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:ProcessSpawnAnalysis/"
+                },
+                {
+                    "D3FEND": "D3-MFA",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:Multi-factorAuthentication/"
+                }
+            ]
+        },
+        {
+            "Platform": [
+                "Linux",
+                "Network",
+                "Windows",
+                "macOS"
+            ]
+        },
+        {
+            "Group": []
+        },
+        {
+            "Campaign": []
+        },
+        {
+            "Software": [
+                {
+                    "Software": "CookieMiner (S0492)",
+                    "URL": "https://attack.mitre.org/software/S0492"
+                },
+                {
+                    "Software": "Dok (S0281)",
+                    "URL": "https://attack.mitre.org/software/S0281"
+                },
+                {
+                    "Software": "WindTail (S0466)",
+                    "URL": "https://attack.mitre.org/software/S0466"
+                }
+            ]
+        },
+        {
+            "NIST": [
+                {
+                    "NIST": "PR.DS",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-ds"
+                },
+                {
+                    "NIST": "DE.CM",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/de/de-cm"
+                },
+                {
+                    "NIST": "ID.AM",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/id/id-am"
+                }
+            ]
+        },
+        {
+            "CIS": [
+                {
+                    "CIS": "CIS 13",
+                    "URL": "https://www.cisecurity.org/controls/network-monitoring-and-defense"
+                }
+            ]
+        },
+        {
+            "Agent": []
+        }
+    ],
+    "Type": "TTP (Tactics, Techniques, and Procedures)",
+    "Logging Required": [
+        "Network Traffic Logs"
+    ],
+    "Recommended Actions": [
+        "Analyze any anomalies in network traffic patterns"
+    ],
+    "Considerations": [
+        "Developers or IT staff may use CURL commands for testing APIs or web services. Confirm with the respective teams if such activities are part of their routine tasks to avoid unnecessary alerts."
+    ],
+    "Mitigation": [
+        {
+            "Mitigation": "Antivirus/Antimalware (M1049)",
+            "URL": "https://attack.mitre.org/mitigations/M1049"
+        },
+        {
+            "Mitigation": "Exploit Protection (M1050)",
+            "URL": "https://attack.mitre.org/mitigations/M1050"
+        },
+        {
+            "Mitigation": "Network Segmentation (M1030)",
+            "URL": "https://attack.mitre.org/mitigations/M1030"
+        },
+        {
+            "Mitigation": "Privileged Account Management (M1026)",
+            "URL": "https://attack.mitre.org/mitigations/M1026"
+        },
+        {
+            "Mitigation": "User Account Management (M1018)",
+            "URL": "https://attack.mitre.org/mitigations/M1018"
+        }
+    ],
+    "References": [
+        "National Institute of Standards and Technology. (n.d.). Cybersecurity framework. https://www.nist.gov/cyberframework"
+    ]
+}
