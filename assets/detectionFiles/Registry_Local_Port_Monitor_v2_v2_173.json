@@ -1,0 +1,103 @@
+{
+    "Detection Name": "Registry Local Port Monitor v2",
+    "Description": "Investigating Registry Local Port Monitor v2 attack on macOS.",
+    "Annotations": [
+        {
+            "CVE": ""
+        },
+        {
+            "Technique": "T1037-Boot or Logon Initialization Scripts"
+        },
+        {
+            "Sub-Technique": "T1037.005-Boot or Logon Initialization Scripts: Startup Items"
+        },
+        {
+            "Tactic": [
+                "Persistence",
+                "Privilege Escalation"
+            ]
+        },
+        {
+            "D3FEND": [
+                {
+                    "D3FEND": "D3-OSM",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:OperatingSystemMonitoring/"
+                },
+                {
+                    "D3FEND": "D3-CI",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:ConfigurationInventory/"
+                },
+                {
+                    "D3FEND": "D3-PH",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:PlatformHardening/"
+                },
+                {
+                    "D3FEND": "D3-SICA",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:SystemInitConfigAnalysis/"
+                }
+            ]
+        },
+        {
+            "Platform": [
+                "macOS"
+            ]
+        },
+        {
+            "Group": []
+        },
+        {
+            "Campaign": []
+        },
+        {
+            "Software": [
+                {
+                    "Software": "jRAT (S0283)",
+                    "URL": "https://attack.mitre.org/software/S0283"
+                }
+            ]
+        },
+        {
+            "NIST": [
+                {
+                    "NIST": "PR.DS",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-ds"
+                },
+                {
+                    "NIST": "DE.CM",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/de/de-cm"
+                },
+                {
+                    "NIST": "ID.RA",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/id/id-ra"
+                }
+            ]
+        },
+        {
+            "CIS": [
+                {
+                    "CIS": "CIS 4",
+                    "URL": "https://www.cisecurity.org/controls/secure-configuration-of-enterprise-assets-and-software"
+                }
+            ]
+        },
+        {
+            "Agent": []
+        }
+    ],
+    "Type": "TTP (Tactics, Techniques, and Procedures)",
+    "Logging Required": [],
+    "Recommended Actions": [],
+    "Considerations": [
+        "Administrators may make legitimate changes to the registry settings for troubleshooting or configuration purposes. These changes can include modifications to the Print Monitors registry keys",
+        "leading to false positive alerts."
+    ],
+    "Mitigation": [
+        {
+            "Mitigation": "Restrict File and Directory Permissions (M1022)",
+            "URL": "https://attack.mitre.org/mitigations/M1022"
+        }
+    ],
+    "References": [
+        "National Institute of Standards and Technology. (n.d.). Cybersecurity framework. https://www.nist.gov/cyberframework"
+    ]
+}
