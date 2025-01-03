@@ -1,0 +1,110 @@
+{
+    "Detection Name": "Registry Local Port Monitor",
+    "Description": "Investigating Registry Local Port Monitor modifications in Windows systems.",
+    "Annotations": [
+        {
+            "CVE": ""
+        },
+        {
+            "Technique": "T1037-Boot or Logon Initialization Scripts"
+        },
+        {
+            "Sub-Technique": "T1037.003-Boot or Logon Initialization Scripts: Network Logon Script"
+        },
+        {
+            "Tactic": [
+                "Persistence",
+                "Privilege Escalation"
+            ]
+        },
+        {
+            "D3FEND": [
+                {
+                    "D3FEND": "D3-DO",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:DecoyObject/"
+                },
+                {
+                    "D3FEND": "D3-DF",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:DecoyFile/"
+                },
+                {
+                    "D3FEND": "D3-DNR",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:DecoyNetworkResource/"
+                },
+                {
+                    "D3FEND": "D3-FIM",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:FileIntegrityMonitoring/"
+                },
+                {
+                    "D3FEND": "D3-FR",
+                    "URL": "https://d3fend.mitre.org/technique/d3f:FileRemoval/"
+                }
+            ]
+        },
+        {
+            "Platform": [
+                "Windows"
+            ]
+        },
+        {
+            "Group": []
+        },
+        {
+            "Campaign": []
+        },
+        {
+            "Software": []
+        },
+        {
+            "NIST": [
+                {
+                    "NIST": "PR.DS",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-ds"
+                },
+                {
+                    "NIST": "DE.CM",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/de/de-cm"
+                },
+                {
+                    "NIST": "ID.RA",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/id/id-ra"
+                },
+                {
+                    "NIST": "ID.IM",
+                    "URL": "https://csf.tools/reference/nist-cybersecurity-framework/v2-0/id/id-im"
+                }
+            ]
+        },
+        {
+            "CIS": [
+                {
+                    "CIS": "CIS 5",
+                    "URL": "https://www.cisecurity.org/controls/account-management"
+                },
+                {
+                    "CIS": "CIS 4",
+                    "URL": "https://www.cisecurity.org/controls/secure-configuration-of-enterprise-assets-and-software"
+                }
+            ]
+        },
+        {
+            "Agent": []
+        }
+    ],
+    "Type": "TTP (Tactics, Techniques, and Procedures)",
+    "Logging Required": [],
+    "Recommended Actions": [],
+    "Considerations": [
+        "Modifications to printer settings or the addition of new printers can lead to changes in the registry under the Local Port Monitor section. These legitimate changes can be misinterpreted as malicious activity",
+        "causing false alerts."
+    ],
+    "Mitigation": [
+        {
+            "Mitigation": "Restrict File and Directory Permissions (M1022)",
+            "URL": "https://attack.mitre.org/mitigations/M1022"
+        }
+    ],
+    "References": [
+        "National Institute of Standards and Technology. (n.d.). Cybersecurity framework. https://www.nist.gov/cyberframework"
+    ]
+}
