@@ -157,7 +157,7 @@ var fileListElement = document.getElementById('file-list');
 async function fetchFileNames() {
     contentDiv = document.getElementById("error-msg");
     fileListElement = document.getElementById('file-list');
-    const response = await fetch(`/assets/detectionFiles.json`);
+    const response = await fetch(`/harsh/assets/detectionFiles.json`);
     fileNames = await response.json();
     fileNames.forEach((file, index) => {
         const li = document.createElement('li');
@@ -197,7 +197,7 @@ window.addEventListener('hashchange', () => {
     createKnowledgeBaseHTML();
 });
 async function fetchJSONFiles(fileName) {
-    const response = await fetch(`/assets/detectionFiles/${fileName}`);
+    const response = await fetch(`/harsh/assets/detectionFiles/${fileName}`);
     const data = await response.json();
 
     var fileTitle = document.getElementById("knowledge-base-file-title");
