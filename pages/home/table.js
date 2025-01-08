@@ -22,7 +22,7 @@ var filterTableContents = [];
 
 async function fetchAllFilesContents(fileNames) {
     for (let i = 0; i < fileNames.length; i++) {
-        const response = await fetch(`/assets/detectionFiles/${fileNames[i]}`);
+        const response = await fetch(`/harsh/assets/detectionFiles/${fileNames[i]}`);
         const data = await response.json();
         const result = {
             "detectionname": data["Detection Name"],
@@ -50,7 +50,7 @@ async function fetchAllFilesContents(fileNames) {
 }
 
 async function fetchFileNames() {
-    const response = await fetch(`/assets/detectionFiles.json`);
+    const response = await fetch(`/harsh/assets/detectionFiles.json`);
     fileNames = await response.json();
     fetchAllFilesContents(fileNames);
 }
